@@ -40,6 +40,7 @@ const MainViewer = () => {
 
   const [modelId, setModelId] = useState(0);
   const [addOnsId, setAddOnsId] = useState(0);
+  const [rotation, setRotation] = useState([-Math.PI / 2, 0, Math.PI / 5]);
 
   const [bedRoomInfo, setBedRoomInfo] = useState({});
   const [selRoom, setSelRoom] = useState('ONE BEDROOM');
@@ -59,7 +60,7 @@ const MainViewer = () => {
       let currentZoom = Math.floor(
         controlsRef.current.target.distanceTo(controlsRef.current.object.position)
       );       
-      console.log(currentZoom);
+      
       setZoomState(100 - currentZoom * 2);
 
       if (currentZoom <= 5) {
@@ -70,7 +71,7 @@ const MainViewer = () => {
       } else {
         setZoomState(100 - currentZoom * 2);
       }
-      console.log(100 - currentZoom * 2, zoomState);
+      
     };
 
     if (controlsRef.current) {
@@ -87,7 +88,6 @@ const MainViewer = () => {
   useEffect(() => {   
     
     setBedRoomInfo(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]);
-    console.log('bedRoomInfotemp is', bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]);
     if(field === 1){
       setSelRoom('ONE BEDROOM');
     } else if( field === 2) {
@@ -101,7 +101,6 @@ const MainViewer = () => {
     }
    
     const group = groupRef.current;
-    console.log(group);
   },[]);
 
   useEffect(() => {
@@ -109,7 +108,8 @@ const MainViewer = () => {
       setFloorPlan(bedRoomInfo?.title);
       setFloorPlanImage(bedRoomInfo?.children[0].image);
       setModelId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].modelId ?? 0); // object id
-      setAddOnsId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].addOnsId ?? 0); // object id
+      setAddOnsId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].addOnsId ?? 0); // object id
+      setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].rotation)
     }   
   },[bedRoomInfo?.title]);
 
@@ -119,6 +119,7 @@ const MainViewer = () => {
     setBedroomClosetName(`${id + 1} . ${item.title}`);
     setFloorPlanImage(bedRoomInfo?.children[id].image);
     setModelId(bedRoomInfo?.children[id].modelId ?? 0); // object id
+    setAddOnsId(bedRoomInfo?.children[id].addOnsId ?? 0); // object id
   }
 
   const handleFinishOption = (value) => {
@@ -199,7 +200,6 @@ const MainViewer = () => {
       // controlsRef.current.target.set(0, 10, 0);
       controlsRef.current.object.position.set(10, 30, 10); // Adjust the desired height for the bird's eye view
       controlsRef.current.update();
-
       // setBirdseyeView(true);
     }
   }
@@ -213,7 +213,6 @@ const MainViewer = () => {
         const delta = Math.max(-1, Math.min(1, event.deltaY));
         controls.zoomSpeed = 0.3;
         controls.dolly(Math.exp(delta * 0.01));
-        console.log('asdfasd')
       };
 
       const handleClick = () => {
@@ -230,6 +229,7 @@ const MainViewer = () => {
       };
     }
   }, []);
+
 
   return (
     <>
@@ -279,7 +279,7 @@ const MainViewer = () => {
             className="w-100" 
             style={{ height: '50vh',  overflow: "scroll" , cursor: 'pointer' }}
           >
-            <Canvas className="canvas-pan" style={{ backgroundColor: '#202020'}}>
+            <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}}>
               <ambientLight />
               <spotLight intensity={0.9} position={[1, -5, 10]} angle={0.45} penumbra={1} castShadow />
               <PerspectiveCamera makeDefault position={[25, 0, 25]} />
@@ -291,26 +291,36 @@ const MainViewer = () => {
                 minPolarAngle={Math.PI / 6} 
                 maxPolarAngle={Math.PI / 2} 
                 rotateSpeed={0.33}
-              />              
-              <mesh scale={0.005} position={[-15, -7, -5]} rotation={[-Math.PI / 2, 0, Math.PI / 4]}  castShadow>
-                {finishOption === true ? (
+              /> 
+              <mesh scale={0.005} position={[-10, -7, -10]} rotation={(!lightOption && !drawersOption)? [-Math.PI / 2, 0, Math.PI / 5] :rotation}  castShadow>
+                {(!lightOption && !drawersOption) && finishOption === true && (
                   <ObjModel objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />
-                ) : (
+                ) }
+
+                {(!lightOption && !drawersOption) && finishOption === false && (
                   <ObjModel objPath={modelTIFiles[modelId].objPath} mtlPath={modelTIFiles[modelId].mtlPath} />
                 )}
 
                 {lightOption && (
-                  finishOption ? (
+                  finishOption && (
                     <ObjModel objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
-                  ) : (
+                  ) 
+                )}
+
+                {lightOption && (
+                  !finishOption && (
                     <ObjModel objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
                   )
                 )}
 
                 {drawersOption && (
-                  finishOption ? (
+                  finishOption && (
                     <ObjModel objPath={modelDrawSCFiles[addOnsId].objPath} mtlPath={modelDrawSCFiles[addOnsId].mtlPath} />
-                  ) : (
+                  ) 
+                )}
+
+                {drawersOption && (
+                  !finishOption && (
                     <ObjModel objPath={modelDrawTIFiles[addOnsId].objPath} mtlPath={modelDrawTIFiles[addOnsId].mtlPath} />
                   )
                 )}
