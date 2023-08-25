@@ -32,7 +32,6 @@ import { bedRoom, modelDrawSCFiles, modelDrawTIFiles, modelLightSCFiles, modelLi
 const MainViewer = () => {
 
   const controlsRef = useRef(null);
-  const groupRef = useRef();
 
   const { search } = useLocation();
   const field = parseInt(new URLSearchParams(search).get('type')) || 0;
@@ -50,9 +49,9 @@ const MainViewer = () => {
   const [bedroomClosetName, setBedroomClosetName] = useState('1. Primary Bedroom Closet');
   const [finishOption, setFinishOption] = useState(true);
   const [lightOption, setLightOption] = useState(false);
-  const [drawersOption, setDrawersOption] = useState(false);
+  const [drawersOption, setDrawersOption] = useState(true);
   const [totalValue, setTotalValue] = useState(5000);
-  const [zoomState, setZoomState] = useState(20);  
+  const [zoomState, setZoomState] = useState(50);  
   //----------------------------------------- 
 
   useEffect(() => {    
@@ -70,8 +69,7 @@ const MainViewer = () => {
         zoomState > 0 ? controlsRef.current.object.position.setLength(currentZoom) : '';
       } else {
         setZoomState(100 - currentZoom * 2);
-      }
-      
+      }      
     };
 
     if (controlsRef.current) {
@@ -99,8 +97,6 @@ const MainViewer = () => {
     } else {
       setSelRoom('PENTHOUSE');
     }
-   
-    const group = groupRef.current;
   },[]);
 
   useEffect(() => {
@@ -110,6 +106,13 @@ const MainViewer = () => {
       setModelId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].modelId ?? 0); // object id
       setAddOnsId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].addOnsId ?? 0); // object id
       setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].rotation)
+      
+      if(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].addOnsId >= 0){
+        setDrawersOption(true);
+      } else{
+        setDrawersOption(false);
+      }
+      
     }   
   },[bedRoomInfo?.title]);
 
@@ -119,6 +122,12 @@ const MainViewer = () => {
     setBedroomClosetName(`${id + 1} . ${item.title}`);
     setFloorPlanImage(bedRoomInfo?.children[id].image);
     setModelId(bedRoomInfo?.children[id].modelId ?? 0); // object id
+    if(bedRoomInfo?.children[id].addOnsId < 0){
+      setLightOption(false);
+      setDrawersOption(false);
+    } else{
+      setDrawersOption(true);
+    }    
     setAddOnsId(bedRoomInfo?.children[id].addOnsId ?? 0); // object id
   }
 
@@ -282,7 +291,7 @@ const MainViewer = () => {
             <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}}>
               <ambientLight />
               <spotLight intensity={0.9} position={[1, -5, 10]} angle={0.45} penumbra={1} castShadow />
-              <PerspectiveCamera makeDefault position={[25, 0, 25]} />
+              <PerspectiveCamera makeDefault position={[18, 0, 18]} />
               <OrbitControls 
                 ref={controlsRef}
                 target={[0, 0, 0]} 
@@ -292,7 +301,8 @@ const MainViewer = () => {
                 maxPolarAngle={Math.PI / 2} 
                 rotateSpeed={0.33}
               /> 
-              <mesh scale={0.005} position={[-10, -7, -10]} rotation={(!lightOption && !drawersOption)? [-Math.PI / 2, 0, Math.PI / 5] :rotation}  castShadow>
+              <mesh scale={0.005} position={[-10, -7, -1]} rotation={(!lightOption && !drawersOption)? [-Math.PI / 2, 0, Math.PI / 5] :rotation}  castShadow>
+                
                 {(!lightOption && !drawersOption) && finishOption === true && (
                   <ObjModel objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />
                 ) }
@@ -301,25 +311,25 @@ const MainViewer = () => {
                   <ObjModel objPath={modelTIFiles[modelId].objPath} mtlPath={modelTIFiles[modelId].mtlPath} />
                 )}
 
-                {lightOption && (
+                {lightOption && addOnsId >= 0 && (
                   finishOption && (
                     <ObjModel objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
                   ) 
                 )}
 
-                {lightOption && (
+                {lightOption && addOnsId >= 0 && (
                   !finishOption && (
                     <ObjModel objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
                   )
                 )}
 
-                {drawersOption && (
+                {drawersOption && addOnsId >= 0 &&(
                   finishOption && (
                     <ObjModel objPath={modelDrawSCFiles[addOnsId].objPath} mtlPath={modelDrawSCFiles[addOnsId].mtlPath} />
                   ) 
                 )}
 
-                {drawersOption && (
+                {drawersOption && addOnsId >= 0 &&(
                   !finishOption && (
                     <ObjModel objPath={modelDrawTIFiles[addOnsId].objPath} mtlPath={modelDrawTIFiles[addOnsId].mtlPath} />
                   )
@@ -389,7 +399,7 @@ const MainViewer = () => {
             <hr className="sentient-underline" />
             <div className="row col-12">
               <div className="col-md-6 col-12">
-                <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Base Price: $5,000</h3>
+                <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Price: $5,000</h3>
                 {lightOption && (
                   <h3 className="sentient-contenttitle">+ lighting add-on:$1,500</h3>
                 )}
@@ -403,7 +413,7 @@ const MainViewer = () => {
             </div>
             <hr className="sentient-underline" />
             <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue}</h2>
-            <p className="sentient-content"> price includes tax_installation</p>
+            <p className="sentient-content"> price includes tax + installation</p>
 
             <h3 className="sentient-contenttitle pt-3"> <b>important:</b> Closet selections must be selected & purchased on <br /> Formsite: link to formsite</h3>
           </div>
@@ -421,7 +431,6 @@ const MainViewer = () => {
             <div className="col-6">
               <img
                 src={SilverImage}
-                // className="w-100"
                 style={{ objectFit: 'contain', width: '14vh' }}
                 alt="" />
             </div>
@@ -441,7 +450,6 @@ const MainViewer = () => {
             <div className="col-6">
               <img
                 src={TatamiImage}
-                // className="w-100"
                 style={{ objectFit: 'contain', width: '14vh' }}
                 alt="" />
             </div>
@@ -469,23 +477,25 @@ const MainViewer = () => {
           </div>
           <span className="sentient-contenttitle">[optional]</span>
 
-          <div className="pt-3 d-flex align-items-center" onClick={() => handleAddOption(true)}>
+          <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(true) : undefined}>
             <img
               src={lightOption === true ? CheckSelectImage : CheckImage}
               style={{ height: '25px', width: '25px' }}
               alt="" />
-            <span className="sentient-contenttitle">&nbsp; Lighting</span>
+            <span className={`sentient-contenttitle`} style={{ color: addOnsId < 0 ? 'gray' : 'inherit' }}>&nbsp; Lighting</span>
           </div>
-          <span className="sentient-contenttitle" style={{ paddingLeft: '25px' }}>&nbsp; additional cost: $1,500</span>
+          <span className="sentient-contenttitle" style={{ paddingLeft: '25px', color: addOnsId < 0 ? 'gray' : 'inherit' }}>
+            &nbsp; additional cost: $1,500
+          </span>
 
-          <div className="pt-3 d-flex align-items-center" onClick={() => handleAddOption(false)}>
+          <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(false) : undefined}>
             <img
               src={drawersOption === true ? CheckSelectImage : CheckImage}
               style={{ height: '25px', width: '25px' }}
               alt="" />
-            <span className="sentient-contenttitle">&nbsp; Drawers </span>
+            <span className="sentient-contenttitle" style={{ color: addOnsId < 0 ? 'gray' : 'inherit' }}>&nbsp; Drawers </span>
           </div>
-          <span className="sentient-contenttitle" style={{ paddingLeft: '25px' }}>&nbsp; additional cost: $1,500</span>
+          <span className="sentient-contenttitle" style={{ paddingLeft: '25px', color: addOnsId < 0 ? 'gray' : 'inherit' }}>&nbsp; additional cost: $1,500</span>
           {/* color: 'gray' */}
           <hr className="sentient-underline" />
           <p className="sentient-content" style={{ fontSize: '16px' }}>

@@ -28,7 +28,7 @@ const NavbarPage = (props) => {
         </div>
         
         <div className="d-md-flex d-none">
-          <a href="http://formsite.com/" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
+          <a href="https://fs18.formsite.com/UrbanspaceLifestyle/kdmpqwciw7/index" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
             <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> ALREADY DECIDED? <br /> CLICK HERE TO PURCHASE </h2>
           </a>
         </div>

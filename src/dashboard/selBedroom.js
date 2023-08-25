@@ -21,11 +21,12 @@ const SelBedroomPage = () => {
       setShowImageData(bedRoom[1]);
     } else if(field === '3'){
       setShowImageData(bedRoom[2]);
-    } else if(field === '4') {
-      setShowImageData(bedRoom[3]);
     } else {
-      setShowImageData(bedRoom[4]);
-    }
+      setShowImageData(bedRoom[3]);
+    } 
+    // else {
+    //   setShowImageData(bedRoom[4]);
+    // }
   }, []);
 
   return (

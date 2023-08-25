@@ -35,11 +35,11 @@ const LandingPage = () => {
         </Link>
       </div>
 
-      <div className="col-lg-4 col-md-6 col-12 sentientbtn-pan mt-5 p-2 m-0 p-0">
-        {/* <Link to="/selbedroom?type=5" className="navbar-brand" onClick={() => window.scrollTo(0, 0)}> */}
+      {/* <div className="col-lg-4 col-md-6 col-12 sentientbtn-pan mt-5 p-2 m-0 p-0">
+        <Link to="/selbedroom?type=5" className="navbar-brand" onClick={() => window.scrollTo(0, 0)}>
           <h2 className="sentient-subtitle text-center  m-0 p-1" style={{ color: '#FFFFFF' }}> PENT BEDROOM </h2>
-        {/* </Link> */}
-      </div>
+        </Link>
+      </div> */}
 
     </div></>
 
