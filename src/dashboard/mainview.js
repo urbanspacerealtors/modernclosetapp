@@ -50,16 +50,24 @@ const MainViewer = () => {
   const [bedroomClosetName, setBedroomClosetName] = useState('1. Primary Bedroom Closet');
   const [finishOption, setFinishOption] = useState(true);
   const [lightOption, setLightOption] = useState(false);
-  const [drawersOption, setDrawersOption] = useState(true);
+  const [drawersOption, setDrawersOption] = useState(false);
+
+  const [price, setPrice] = useState(0);
+  const [drawPrice, setDrawPrice] = useState(0);
+  const [lightPrice, setLightPrice] = useState(0);
+  const [objPositon, setObjPositon] = useState({});
+
   const [totalValue, setTotalValue] = useState(5000);
-  const [zoomState, setZoomState] = useState(50);  
+  const [basePrice, setBasePrice] = useState(5000);
+
+  const [zoomState, setZoomState] = useState(50);
   //----------------------------------------- 
 
   useEffect(() => {    
     const handleChange = () => {
       let currentZoom = Math.floor(
         controlsRef.current.target.distanceTo(controlsRef.current.object.position)
-      );       
+      );
       
       setZoomState(100 - currentZoom * 2);
 
@@ -107,13 +115,15 @@ const MainViewer = () => {
       setModelId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].modelId ?? 0); // object id
       setAddOnsId(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].addOnsId ?? 0); // object id
       setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].rotation)
+
+      setPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price)
+      setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
+      setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
       
-      if(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].addOnsId >= 0){
-        setDrawersOption(true);
-      } else{
-        setDrawersOption(false);
-      }
-      
+      setDrawPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.drawerPrice ?? 0);
+      setLightPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.lightingPrice ?? 0);
+      setTotalValue(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price );
+      setBasePrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price );      
     }   
   },[bedRoomInfo?.title]);
 
@@ -123,13 +133,39 @@ const MainViewer = () => {
     setBedroomClosetName(`${id + 1} . ${item.title}`);
     setFloorPlanImage(bedRoomInfo?.children[id].image);
     setModelId(bedRoomInfo?.children[id].modelId ?? 0); // object id
-    if(bedRoomInfo?.children[id].addOnsId < 0){
-      setLightOption(false);
-      setDrawersOption(false);
-    } else{
-      setDrawersOption(true);
-    }    
+       
     setAddOnsId(bedRoomInfo?.children[id].addOnsId ?? 0); // object id
+    setPrice(bedRoomInfo?.children[id].price ?? 0); // object id
+
+    if(bedRoomInfo?.children[id]?.lightingPrice > 0){
+      setDrawPrice(bedRoomInfo?.children[id]?.drawerPrice ?? 0);
+      setLightPrice(bedRoomInfo?.children[id]?.lightingPrice ?? 0);
+    } else {
+      setDrawPrice(bedRoomInfo?.drawerPrice ?? 0);
+      setLightPrice(bedRoomInfo?.lightingPrice ?? 0);
+    }    
+
+    setObjPositon(bedRoomInfo?.children[id].position)
+    setRotation(bedRoomInfo?.children[id].rotation)
+
+    let tempvalue = 0;
+    if(lightOption === true){
+      tempvalue = bedRoomInfo?.lightingPrice;
+    } else if(drawPrice === true){
+      tempvalue = bedRoom?.drawerPrice;
+    }
+
+    if(bedRoomInfo?.children[id].addOnsId >= 0){
+      setTotalValue((bedRoomInfo?.children[id].price + tempvalue)?.toLocaleString() ?? 0);
+      setBasePrice((bedRoomInfo?.children[id].price + tempvalue) ?? 0);
+    } else{
+      setTotalValue(bedRoomInfo?.children[id].price?.toLocaleString() ?? 0);
+      setBasePrice(bedRoomInfo?.children[id].price ?? 0);      
+    }
+    setLightOption(false);
+    setDrawersOption(false);
+
+    handleReset();
   }
 
   const handleFinishOption = (value) => {
@@ -139,18 +175,23 @@ const MainViewer = () => {
   }
 
   const handleAddOption = (value) => {
-    let tempvalue = 0;
-    if(lightOption === false)
-      tempvalue += 1500;
-    // if(drawersOption === true)
-    // {
-    //   tempvalue += 1500;
-    // }        
-    setLightOption(!lightOption);
+    let tempvalue = parseInt(basePrice);
+    if(value === true){
+      if(lightOption === false)
+        tempvalue += (lightPrice-drawPrice);
+      if(drawersOption && drawPrice > 0)
+        tempvalue += drawPrice;
 
-    console.log(drawersOption, !lightOption)
+      setLightOption(!lightOption);
+    } else if( value === false) {
+      if (drawersOption === false && drawPrice > 0 )
+        tempvalue += drawPrice;
+      if(lightOption)
+        tempvalue += (lightPrice-drawPrice);
+      setDrawersOption(!drawersOption);
+    }
 
-    setTotalValue(5000 + tempvalue);
+    setTotalValue(tempvalue);
     // -------------------------------------------
   }
 
@@ -196,8 +237,7 @@ const MainViewer = () => {
   // reset
   const handleReset = () => {
     if (controlsRef.current) {
-      controlsRef.current.reset(); 
-      // setBirdseyeView(false);
+      controlsRef.current.reset();
     }
   }
 
@@ -207,45 +247,25 @@ const MainViewer = () => {
       // controlsRef.current.target.set(0, 10, 0);
       controlsRef.current.object.position.set(10, 30, 10); // Adjust the desired height for the bird's eye view
       controlsRef.current.update();
-      // setBirdseyeView(true);
     }
   }
-
-  useEffect(() => {
-    const controls = controlsRef.current;
-
-    if (controls) {
-      const handleScroll = (event) => {
-        event.preventDefault();
-        const delta = Math.max(-1, Math.min(1, event.deltaY));
-        controls.zoomSpeed = 0.3;
-        controls.dolly(Math.exp(delta * 0.01));
-      };
-
-      const handleClick = () => {
-        controls.rotateSpeed = 0.5;
-        controls.mouseButtons.ORBIT = THREE.MOUSE.LEFT; // Change to desired mouse button
-      };
-
-      controls.addEventListener("mousewheel", handleScroll);
-      controls.addEventListener("mousedown", handleClick);
-
-      return () => {
-        controls.removeEventListener("mousewheel", handleScroll);
-        controls.removeEventListener("mousedown", handleClick);
-      };
-    }
-  }, []);
-
-
+ 
   return (
     <>
     <NavbarPage />
     <div style={{ maxWidth: '1920px', marginLeft: 'auto', marginRight: 'auto'}}>
-      <div className="table-header px-3 pt-3 m-0 p-0" >
-        <Button className='sentient-content' color="flat-light white" style={{color: '#0000FF'}} onClick={() => window.history.back()}>
-          &lt; back to list
-        </Button>
+      <div className='d-flex justify-content-between align-items-center px-5 pt-4 py-3'>
+        <div className="d-flex">
+          <div 
+            className="m-0 p-0 mb-1 sentientbackbtn-pan" 
+            style={{ backgroundColor: '#294734'}}
+            onClick={() => window.history.back()}
+          >
+            <h3 className="sentient-contenttitle text-center px-4 p-2 m-0 p-0" style={{color: '#FFFFFF'}}>
+              <span>&#8249; &nbsp;</span> back to list
+            </h3>
+          </div>
+        </div>
       </div>
 
       <div className=" row col-12 px-lg-5 px-3 m-0 p-0">
@@ -262,7 +282,7 @@ const MainViewer = () => {
               className="w-100"
               src={floorPlanImage}
               alt="logo"
-              style={{ objectFit: 'scale-down', height: 'auto', width: 'auto' }}
+              style={{ objectFit: 'scale-down', height: 'auto', width: 'auto', alignItems: 'center' }}
             />
           </div>
 
@@ -296,51 +316,67 @@ const MainViewer = () => {
             >
               <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}}>
                 <ambientLight />
-                <spotLight intensity={0.9} position={[1, 50, 10]} angle={0.90} penumbra={1} castShadow />
-                <PerspectiveCamera makeDefault position={[18, 0, 18]} />
+                {/* <spotLight intensity="200" position={[5, 10, 5]} penumbra={1} castShadow /> */}
+                <PerspectiveCamera makeDefault position={[20, 0, 20]} />
+                {addOnsId < 0 && <pointLight intensity='500' position={[5, -8, 5]} />}
+                 {/* position={[15, 10, 10]} */}
+                {lightOption && <pointLight intensity='500' position={[5, 0, 1]}/> }
                 <OrbitControls 
                   ref={controlsRef}
-                  target={[0, 0, 0]} 
+                  target={[0,0,0]} 
                   minDistance={5}
                   maxDistance={50}
                   minPolarAngle={Math.PI / 6} 
                   maxPolarAngle={Math.PI / 2} 
                   rotateSpeed={0.33}
                 /> 
-                <mesh scale={0.005} position={[-10, -7, -1]} rotation={(!lightOption && !drawersOption)? [-Math.PI / 2, 0, Math.PI / 5] :rotation}  castShadow>
-                  
+                <mesh  rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={0.005} position={objPositon} castShadow>
                   {addOnsId < 0 ? (
                     finishOption ? (
-                      <ObjModel objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />
+                      <ObjModel rotation={rotation} objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />
                     ) : (
-                      <ObjModel objPath={modelTIFiles[modelId].objPath} mtlPath={modelTIFiles[modelId].mtlPath} />
+                      <ObjModel rotation={rotation} objPath={modelTIFiles[modelId].objPath} mtlPath={modelTIFiles[modelId].mtlPath} />
                     )
                   ) : (
                     <>
-
                       {drawersOption &&(
                         finishOption && (
-                          <ObjModel objPath={modelDrawSCFiles[addOnsId].objPath} mtlPath={modelDrawSCFiles[addOnsId].mtlPath} />
+                          <ObjModel rotation={rotation} objPath={modelDrawSCFiles[addOnsId].objPath} mtlPath={modelDrawSCFiles[addOnsId].mtlPath} />
                         ) 
                       )}
 
                       {drawersOption &&(
                         !finishOption && (
-                          <ObjModel objPath={modelDrawTIFiles[addOnsId].objPath} mtlPath={modelDrawTIFiles[addOnsId].mtlPath} />
+                          <ObjModel rotation={rotation} objPath={modelDrawTIFiles[addOnsId].objPath} mtlPath={modelDrawTIFiles[addOnsId].mtlPath} />
                         )
                       )}
+                      {/* -------- */}
 
-                      {(lightOption && addOnsId < 4 ) && (
+                      {(lightOption) && (
                         finishOption && (
-                          <ObjModel objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
+                          <ObjModel rotation={rotation} objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
                         ) 
                       )}
 
-                      {(lightOption && addOnsId < 4 ) && (
+                      {(lightOption) && (
                         !finishOption && (
-                          <ObjModel objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
+                          <ObjModel rotation={rotation} objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
                         )
-                      )}                      
+                      )}
+                      {/* ----------- */}
+
+                      {(!lightOption && (!drawersOption || drawPrice <= 0) ) && (
+                        finishOption && (
+                          <ObjModel rotation={rotation} objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
+                        ) 
+                      )}
+
+                      {(!lightOption && (!drawersOption || drawPrice <= 0) ) && (
+                        !finishOption && (
+                          <ObjModel rotation={rotation} objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
+                        )
+                      )}
+
                     </>
                   )}
                 </mesh>
@@ -408,20 +444,20 @@ const MainViewer = () => {
               <hr className="sentient-underline" />
               <div className="row col-12">
                 <div className="col-md-6 col-12">
-                  <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Price: $5,000</h3>
+                  <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>{`Price: $${price?.toLocaleString()}`}</h3>
                   {lightOption && (
-                    <h3 className="sentient-contenttitle">+ lighting add-on:$1,500</h3>
+                    <h3 className="sentient-contenttitle">{`+ lighting add-on:$${(lightPrice-drawPrice)?.toLocaleString()}`}</h3>
                   )}
-                  {/* {drawersOption && (
-                    <h3 className="sentient-contenttitle">+ drawers add-on:$1,500</h3>
-                  )} */}
+                  {drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ drawers add-on:$${drawPrice?.toLocaleString()}`}</h3>
+                  )}
                 </div>
                 <div className="col-md-6 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Finish: {finishOption === true ? 'Silver Cembran' : 'Tatami Ivory'}</h3>
                 </div>
               </div>
               <hr className="sentient-underline" />
-              <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue}</h2>
+              <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue?.toLocaleString()}</h2>
               <p className="sentient-content"> price includes tax + installation</p>
 
               <h3 className="sentient-contenttitle pt-3"> <b>important:</b> Closet selections must be selected & purchased on <br /> Formsite: link to formsite</h3>
@@ -436,14 +472,14 @@ const MainViewer = () => {
             <h1 className="sentient-content" style={{ color: '#294734' }}>Click to toggle:</h1>
           </div>
           <div>
-            <div className="pt-2 row col-12 d-flex align-items-center">
+            <div className="pt-2 row col-12 d-flex align-items-center" style={{ cursor: 'pointer'}} onClick={() => handleFinishOption(true)}>
               <div className="col-6">
                 <img
                   src={SilverImage}
                   style={{ objectFit: 'contain', width: '14vh' }}
                   alt="" />
               </div>
-              <div className="col-6" onClick={() => handleFinishOption(true)}>
+              <div className="col-6">
                 <div>
                   <img
                     style={{ height: '25px', width: '25px' }}
@@ -455,14 +491,14 @@ const MainViewer = () => {
                 <span className="sentient-contenttitle d-xl-none d-flex" >Cembran</span>
               </div>
             </div>
-            <div className="pt-2 row col-12 d-flex align-items-center">
+            <div className="pt-2 row col-12 d-flex align-items-center" style={{ cursor: 'pointer'}} onClick={() => handleFinishOption(false)}>
               <div className="col-6">
                 <img
                   src={TatamiImage}
                   style={{ objectFit: 'contain', width: '14vh' }}
                   alt="" />
               </div>
-              <div className="col-6" onClick={() => handleFinishOption(false)}>
+              <div className="col-6" >
                 <div>
                   <img
                     style={{ height: '25px', width: '25px' }}
@@ -475,7 +511,7 @@ const MainViewer = () => {
               </div>
             </div>
           </div>
-          {/* addOnes Section */}
+         {/* addOnes Section */}
           {addOnsId >= 0 && (
             <div>
               <hr className="sentient-underline" />
@@ -493,20 +529,24 @@ const MainViewer = () => {
                   src={lightOption === true ? CheckSelectImage : CheckImage}
                   style={{ height: '25px', width: '25px' }}
                   alt="" />
-                <span className={`sentient-contenttitle`}>&nbsp; {`${addOnsId < 4 ? 'LIGHTING' : 'LIGHTING + DRAWERS'}`}</span>
+                <span className={`sentient-contenttitle`}>&nbsp; Lighting </span>
               </div>
               <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
-                &nbsp; additional cost: $1,500
+                &nbsp; {`additional cost:$${(lightPrice-drawPrice)?.toLocaleString()}`}
               </span>
 
-              {/* <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(false) : undefined}>
-                <img
-                  src={drawersOption === true ? CheckSelectImage : CheckImage}
-                  style={{ height: '25px', width: '25px' }}
-                  alt="" />
-                <span className="sentient-contenttitle">&nbsp; Drawers </span>
-              </div>
-              <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>&nbsp; additional cost: $1,500</span>             */}
+              {drawPrice > 0 && (
+                <>
+                  <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(false) : undefined}>
+                    <img
+                      src={drawersOption === true ? CheckSelectImage : CheckImage}
+                      style={{ height: '25px', width: '25px' }}
+                      alt="" />
+                    <span className="sentient-contenttitle">&nbsp; Drawers </span>
+                  </div>
+                  <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>&nbsp; {`additional cost: $${drawPrice?.toLocaleString()}`}</span>            
+                </>
+              )}
             </div>
           )} 
           <div>

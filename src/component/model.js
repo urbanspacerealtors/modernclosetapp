@@ -1,10 +1,9 @@
-import { useFrame, useLoader  } from "react-three-fiber";
+import { useLoader  } from "react-three-fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
-const ObjModel = ({ objPath, mtlPath }) => {
-
+const ObjModel = ({ objPath, mtlPath, rotation }) => {
   const obj = useLoader(OBJLoader, objPath, loader => {
     const mtlLoader = new MTLLoader();
     mtlLoader.load(mtlPath, materials => {
@@ -12,7 +11,12 @@ const ObjModel = ({ objPath, mtlPath }) => {
       loader.load(objPath);
     });
   });
-  return <group><primitive object={obj} /></group>;
+  
+  obj.rotateOnAxis(0,0,0);  
+  obj.rotation.set(0,0,0);
+  console.log('object is', obj);
+
+  return <group rotation={rotation}> <primitive object={obj}/> </group>;
 
 };
 export default ObjModel;
