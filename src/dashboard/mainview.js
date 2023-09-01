@@ -27,7 +27,6 @@ import { useLocation } from 'react-router';
 import ObjModel from '../component/model'
 import NavbarPage from '../layouts/Navbar';
 import { bedRoom, modelDrawSCFiles, modelDrawTIFiles, modelLightSCFiles, modelLightTIFiles, modelSCFiles, modelTIFiles } from '../component/objectConstant';
-import { Button } from 'reactstrap';
 
 // -----------------------------------------------------------------------
 const MainViewer = () => {
@@ -41,6 +40,11 @@ const MainViewer = () => {
   const [modelId, setModelId] = useState(0);
   const [addOnsId, setAddOnsId] = useState(0);
   const [rotation, setRotation] = useState([-Math.PI / 2, 0, Math.PI / 5]);
+  const [objPositon, setObjPositon] = useState({}); 
+  const [price, setPrice] = useState(0);
+  const [drawPrice, setDrawPrice] = useState(0);
+  const [lightPrice, setLightPrice] = useState(0);
+  const [objScale, setObjScale] = useState(0.005);
 
   const [bedRoomInfo, setBedRoomInfo] = useState({});
   const [selRoom, setSelRoom] = useState('ONE BEDROOM');
@@ -50,12 +54,7 @@ const MainViewer = () => {
   const [bedroomClosetName, setBedroomClosetName] = useState('1. Primary Bedroom Closet');
   const [finishOption, setFinishOption] = useState(true);
   const [lightOption, setLightOption] = useState(false);
-  const [drawersOption, setDrawersOption] = useState(false);
-
-  const [price, setPrice] = useState(0);
-  const [drawPrice, setDrawPrice] = useState(0);
-  const [lightPrice, setLightPrice] = useState(0);
-  const [objPositon, setObjPositon] = useState({});
+  const [drawersOption, setDrawersOption] = useState(false); 
 
   const [totalValue, setTotalValue] = useState(5000);
   const [basePrice, setBasePrice] = useState(5000);
@@ -119,6 +118,7 @@ const MainViewer = () => {
       setPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price)
       setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
       setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
+      setObjScale(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale ?? 0.005)
       
       setDrawPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.drawerPrice ?? 0);
       setLightPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.lightingPrice ?? 0);
@@ -145,8 +145,9 @@ const MainViewer = () => {
       setLightPrice(bedRoomInfo?.lightingPrice ?? 0);
     }    
 
-    setObjPositon(bedRoomInfo?.children[id].position)
-    setRotation(bedRoomInfo?.children[id].rotation)
+    setObjPositon(bedRoomInfo?.children[id].position);
+    setRotation(bedRoomInfo?.children[id].rotation);
+    setObjScale(bedRoomInfo?.children[id]?.scale ?? 0.005);
 
     let tempvalue = 0;
     if(lightOption === true){
@@ -315,12 +316,22 @@ const MainViewer = () => {
               style={{ height: '50vh',  overflow: "scroll" , cursor: 'pointer' }}
             >
               <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}}>
-                <ambientLight />
-                {/* <spotLight intensity="200" position={[5, 10, 5]} penumbra={1} castShadow /> */}
+
                 <PerspectiveCamera makeDefault position={[20, 0, 20]} />
+
+                <ambientLight />
+
                 {addOnsId < 0 && <pointLight intensity='500' position={[5, -8, 5]} />}
-                 {/* position={[15, 10, 10]} */}
-                {lightOption && <pointLight intensity='500' position={[5, 0, 1]}/> }
+
+                {addOnsId >= 0 && (
+                  <>
+                    <directionalLight />
+                    <spotLight intensity="200" position={[5, 10, 5]} penumbra={1} castShadow />  
+                  </>
+                )}
+
+                {lightOption && <pointLight intensity='500' position={[0, 0, -2]}/> }
+
                 <OrbitControls 
                   ref={controlsRef}
                   target={[0,0,0]} 
@@ -329,8 +340,10 @@ const MainViewer = () => {
                   minPolarAngle={Math.PI / 6} 
                   maxPolarAngle={Math.PI / 2} 
                   rotateSpeed={0.33}
-                /> 
-                <mesh  rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={0.005} position={objPositon} castShadow>
+                />
+                {/* scale={objScale} */} 
+                {/* 0.0001 */} 
+                <mesh  rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={objScale} position={objPositon} castShadow>
                   {addOnsId < 0 ? (
                     finishOption ? (
                       <ObjModel rotation={rotation} objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />

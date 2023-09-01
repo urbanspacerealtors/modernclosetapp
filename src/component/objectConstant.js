@@ -23,7 +23,6 @@ export const modelSCFiles = [
     { objPath: 'basicObject/B1N RI SC.OBJ', mtlPath: 'basicObject/B1N RI SC.mtl' },
     { objPath: 'basicObject/C2 HC SC.OBJ', mtlPath: 'basicObject/C2 HC SC.mtl' },
     { objPath: 'basicObject/C2 RI1 V3 SC.OBJ', mtlPath: 'basicObject/C2 RI1 V3 SC.mtl' },
-    // { objPath: 'basicObject/B3 SC.OBJ', mtlPath: 'basicObject/B3 SC.mtl' },
   ];
 
   export const modelTIFiles = [
@@ -50,7 +49,6 @@ export const modelSCFiles = [
     { objPath: 'basicObject/B1N RI TI.OBJ', mtlPath: 'basicObject/B1N RI TI.mtl' },
     { objPath: 'basicObject/C2 HC TI.OBJ', mtlPath: 'basicObject/C2 HC TI.mtl' },
     { objPath: 'basicObject/C2 RI1 V3 TI.OBJ', mtlPath: 'basicObject/C2 RI1 V3 TI.mtl' },
-    // { objPath: 'basicObject/B3 PC TI.OBJ', mtlPath: 'basicObject/B3 PC TI.mtl' },
   ];
 
   export const modelLightSCFiles = [
@@ -65,6 +63,7 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D1 SC/SC/M002300004300.OBJ', mtlPath: 'Lighting/D1 SC/SC/M002300004300.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
     { objPath: 'Lighting/D3 Hall SC/SC/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/SC/M002300002000.mtl' },
+    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelLightTIFiles = [
@@ -79,6 +78,7 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D1 SC/TI/M002300004300.OBJ', mtlPath: 'Lighting/D1 SC/TI/M002300004300.mtl' },    
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
     { objPath: 'Lighting/D3 Hall SC/TI/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/TI/M002300002000.mtl' },
+    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelDrawSCFiles = [
@@ -93,6 +93,7 @@ export const modelSCFiles = [
     { objPath: 'Drawers/D1 SC/SC/M002300004300.OBJ', mtlPath: 'Drawers/D1 SC/SC/M002300004300.mtl' },
     { objPath: 'Drawers/D2 PC/SC/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/SC/M002300001500.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
+    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelDrawTIFiles = [
@@ -108,6 +109,7 @@ export const modelSCFiles = [
     { objPath: 'Drawers/D1 SC/TI/M002300004300.OBJ', mtlPath: 'Drawers/D1 SC/TI/M002300004300.mtl' },
     { objPath: 'Drawers/D2 PC/TI/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/TI/M002300001500.mtl' },    
     { objPath: 'Drawers/D3 Hall/TI/M002300002000.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002000.mtl' },
+    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
 //   -------------------------------------------------------------------------------------------------
@@ -525,9 +527,12 @@ export const bedRoom = [
               title: 'Primary Bedroom Closet',
               image: 'BedRooms/Two Bedroom/B3/B3 - Primary Closet.jpg',
               modelId: 8,
-              addOnsId: 3, 
-              rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              // addOnsId: 3, 
+              addOnsId: 11,
+              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+              scale:0.000005,
+              position: [-30, -6, 0], // for SC
+              // position: [-5, -6, 2],  // for TI
               price:13400
             },
             {
@@ -535,12 +540,9 @@ export const bedRoom = [
               title: 'Second Bedroom Closet',
               image: 'BedRooms/Two Bedroom/B3/B3 - Reach In Closet.jpg',
               modelId: 8,
-              // modelId: 23,
               addOnsId: -1, 
-              // rotation: ([0, Math.PI /2, 0]),  for TI
-              // position: [-2, -3, 2],
-              // rotation: ([0, Math.PI/2, 0]), for SC
-              // position: [0, -150, 0],
+              rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+              position: [-8, -7, 0],
               price:6300
             },
             {
