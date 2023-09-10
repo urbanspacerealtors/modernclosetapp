@@ -4,7 +4,8 @@ import * as THREE from 'three';
 
 import { useRef } from 'react';
 import { startTransition } from 'react';
-import { OrbitControls, useBoundingBox , PerspectiveCamera } from '@react-three/drei';
+import { OrbitControls, useBoundingBox , PerspectiveCamera, Lightformer } from '@react-three/drei';
+import { BrightnessContrast, Bloom, DepthOfField, EffectComposer, Glitch, Noise, ToneMapping, Vignette } from '@react-three/postprocessing'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 
 // ------------------------------------------------------------------------
@@ -27,6 +28,7 @@ import { useLocation } from 'react-router';
 import ObjModel from '../component/model'
 import NavbarPage from '../layouts/Navbar';
 import { bedRoom, modelDrawSCFiles, modelDrawTIFiles, modelLightSCFiles, modelLightTIFiles, modelSCFiles, modelTIFiles } from '../component/objectConstant';
+import { BlendFunction, GlitchMode } from 'postprocessing';
 
 // -----------------------------------------------------------------------
 const MainViewer = () => {
@@ -46,6 +48,15 @@ const MainViewer = () => {
   const [lightPrice, setLightPrice] = useState(0);
   const [objScale, setObjScale] = useState(0.005);
 
+  const [largeOption, setLargeOption] = useState(false); 
+  const [rotation_light, setRotation_light] = useState(0);
+  const [objPositon_light, setObjPositon_light] = useState(0);
+  const [objScale_light, setObjScale_light] = useState(0);
+
+  const [rotation_origin, setRotation_origin] = useState(0);
+  const [objPositon_origin, setObjPositon_origin] = useState(0);
+  const [objScale_origin, setObjScale_origin] = useState(0.005);
+
   const [bedRoomInfo, setBedRoomInfo] = useState({});
   const [selRoom, setSelRoom] = useState('ONE BEDROOM');
   const [floorPlan, setFloorPlan] = useState('A1.1EN');
@@ -55,6 +66,7 @@ const MainViewer = () => {
   const [finishOption, setFinishOption] = useState(true);
   const [lightOption, setLightOption] = useState(false);
   const [drawersOption, setDrawersOption] = useState(false); 
+
 
   const [totalValue, setTotalValue] = useState(5000);
   const [basePrice, setBasePrice] = useState(5000);
@@ -91,8 +103,7 @@ const MainViewer = () => {
     };
   }, [controlsRef.current]);
 
-  useEffect(() => {   
-    
+  useEffect(() => {
     setBedRoomInfo(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]);
     if(field === 1){
       setSelRoom('ONE BEDROOM');
@@ -116,9 +127,25 @@ const MainViewer = () => {
       setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].rotation)
 
       setPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price)
-      setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
-      setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
-      setObjScale(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale ?? 0.005)
+
+      if(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.rotation_light){
+        setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position_light)
+        setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation_light)
+        setObjScale(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale_light ?? 0.005)
+
+        setObjPositon_origin(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
+        setRotation_origin(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
+        setObjScale_origin(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale)
+
+        setObjPositon_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position_light)
+        setRotation_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation_light)
+        setObjScale_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale_light)
+      } else {
+        setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
+        setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
+        setObjScale(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale ?? 0.005);
+
+      }      
       
       setDrawPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.drawerPrice ?? 0);
       setLightPrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber]?.lightingPrice ?? 0);
@@ -145,9 +172,25 @@ const MainViewer = () => {
       setLightPrice(bedRoomInfo?.lightingPrice ?? 0);
     }    
 
-    setObjPositon(bedRoomInfo?.children[id].position);
-    setRotation(bedRoomInfo?.children[id].rotation);
-    setObjScale(bedRoomInfo?.children[id]?.scale ?? 0.005);
+    if(bedRoomInfo?.children[id]?.rotation_light){
+      setObjPositon(bedRoomInfo?.children[id].position_light);
+      setRotation(bedRoomInfo?.children[id].rotation_light);
+      setObjScale(bedRoomInfo?.children[id]?.scale_light);
+
+      setObjPositon_origin(bedRoomInfo?.children[id].position);
+      setRotation_origin(bedRoomInfo?.children[id].rotation);
+      setObjScale_origin(bedRoomInfo?.children[id]?.scale);
+
+      setObjPositon_light(bedRoomInfo?.children[id].position_light);
+      setRotation_light(bedRoomInfo?.children[id].rotation_light);
+      setObjScale_light(bedRoomInfo?.children[id]?.scale_light);
+      setLargeOption(true);
+    } else {
+      setObjPositon(bedRoomInfo?.children[id].position);
+      setRotation(bedRoomInfo?.children[id].rotation);
+      setObjScale(bedRoomInfo?.children[id]?.scale ?? 0.005);
+      setLargeOption(false);
+    }    
 
     let tempvalue = 0;
     if(lightOption === true){
@@ -184,16 +227,30 @@ const MainViewer = () => {
         tempvalue += drawPrice;
 
       setLightOption(!lightOption);
+      setLargeOption(false);
     } else if( value === false) {
       if (drawersOption === false && drawPrice > 0 )
         tempvalue += drawPrice;
       if(lightOption)
         tempvalue += (lightPrice-drawPrice);
       setDrawersOption(!drawersOption);
-    }
+      setLargeOption(false);
 
+      if(objScale_light > 0){
+        if(drawersOption === true){        
+          setRotation(rotation_light);
+          setObjPositon(objPositon_light);
+          setObjScale(objScale_light);
+          setLargeOption(true);
+        } else {
+          setRotation(rotation_origin);
+          setObjPositon(objPositon_origin);
+          setObjScale(objScale_origin);
+          setLargeOption(true);
+        }
+      }      
+    }
     setTotalValue(tempvalue);
-    // -------------------------------------------
   }
 
   // zoom in and out
@@ -315,7 +372,7 @@ const MainViewer = () => {
               className="w-100" 
               style={{ height: '50vh',  overflow: "scroll" , cursor: 'pointer' }}
             >
-              <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}}>
+              <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}} >
 
                 <PerspectiveCamera makeDefault position={[20, 0, 20]} />
 
@@ -325,12 +382,11 @@ const MainViewer = () => {
 
                 {addOnsId >= 0 && (
                   <>
-                    <directionalLight />
-                    <spotLight intensity="200" position={[5, 10, 5]} penumbra={1} castShadow />  
+                    <spotLight intensity="200" position={[0, 15, 5]} penumbra={1} castShadow />  
                   </>
                 )}
 
-                {lightOption && <pointLight intensity='500' position={[0, 0, -2]}/> }
+                {/* {lightOption && <pointLight intensity='100' position={[0, 0, 5]}/> } */}
 
                 <OrbitControls 
                   ref={controlsRef}
@@ -340,56 +396,82 @@ const MainViewer = () => {
                   minPolarAngle={Math.PI / 6} 
                   maxPolarAngle={Math.PI / 2} 
                   rotateSpeed={0.33}
+                  scale={objScale}
                 />
-                {/* scale={objScale} */} 
-                {/* 0.0001 */} 
                 <mesh  rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={objScale} position={objPositon} castShadow>
                   {addOnsId < 0 ? (
                     finishOption ? (
-                      <ObjModel rotation={rotation} objPath={modelSCFiles[modelId].objPath} mtlPath={modelSCFiles[modelId].mtlPath} />
+                      <ObjModel
+                        largeOption={largeOption} 
+                        rotation={rotation} 
+                        objPath={modelSCFiles[modelId].objPath} 
+                        mtlPath={modelSCFiles[modelId].mtlPath} 
+                      />
                     ) : (
-                      <ObjModel rotation={rotation} objPath={modelTIFiles[modelId].objPath} mtlPath={modelTIFiles[modelId].mtlPath} />
+                      <ObjModel
+                        largeOption={largeOption} 
+                        rotation={rotation} 
+                        objPath={modelTIFiles[modelId].objPath} 
+                        mtlPath={modelTIFiles[modelId].mtlPath} 
+                      />
                     )
                   ) : (
                     <>
-                      {drawersOption &&(
-                        finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelDrawSCFiles[addOnsId].objPath} mtlPath={modelDrawSCFiles[addOnsId].mtlPath} />
-                        ) 
+                      {finishOption ? (
+                        <>
+                          {drawersOption &&(
+                            <ObjModel 
+                              largeOption={largeOption}
+                              rotation={rotation} 
+                              objPath={modelDrawSCFiles[addOnsId].objPath} 
+                              mtlPath={modelDrawSCFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                          {!drawersOption && lightOption && (
+                            <ObjModel 
+                              largeOption={largeOption}
+                              rotation={rotation} 
+                              objPath={modelLightSCFiles[addOnsId].objPath} 
+                              mtlPath={modelLightSCFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                          {(!drawersOption || drawPrice <= 0) && !lightOption && (
+                            <ObjModel 
+                              largeOption={largeOption}
+                              rotation={rotation} 
+                              objPath={modelLightSCFiles[addOnsId].objPath} 
+                              mtlPath={modelLightSCFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {drawersOption &&(
+                            <ObjModel 
+                              largeOption={largeOption}
+                              rotation={rotation} 
+                              objPath={modelDrawTIFiles[addOnsId].objPath} 
+                              mtlPath={modelDrawTIFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                          {!drawersOption && lightOption && (
+                            <ObjModel
+                              largeOption={largeOption} 
+                              rotation={rotation} 
+                              objPath={modelLightTIFiles[addOnsId].objPath} 
+                              mtlPath={modelLightTIFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                          {(!drawersOption || drawPrice <= 0) && !lightOption && (
+                            <ObjModel
+                              largeOption={largeOption} 
+                              rotation={rotation} 
+                              objPath={modelLightTIFiles[addOnsId].objPath} 
+                              mtlPath={modelLightTIFiles[addOnsId].mtlPath} 
+                            />
+                          )}
+                        </>
                       )}
-
-                      {drawersOption &&(
-                        !finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelDrawTIFiles[addOnsId].objPath} mtlPath={modelDrawTIFiles[addOnsId].mtlPath} />
-                        )
-                      )}
-                      {/* -------- */}
-
-                      {(lightOption) && (
-                        finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
-                        ) 
-                      )}
-
-                      {(lightOption) && (
-                        !finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
-                        )
-                      )}
-                      {/* ----------- */}
-
-                      {(!lightOption && (!drawersOption || drawPrice <= 0) ) && (
-                        finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelLightSCFiles[addOnsId].objPath} mtlPath={modelLightSCFiles[addOnsId].mtlPath} />
-                        ) 
-                      )}
-
-                      {(!lightOption && (!drawersOption || drawPrice <= 0) ) && (
-                        !finishOption && (
-                          <ObjModel rotation={rotation} objPath={modelLightTIFiles[addOnsId].objPath} mtlPath={modelLightTIFiles[addOnsId].mtlPath} />
-                        )
-                      )}
-
                     </>
                   )}
                 </mesh>

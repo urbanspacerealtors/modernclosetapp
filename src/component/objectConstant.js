@@ -63,7 +63,6 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D1 SC/SC/M002300004300.OBJ', mtlPath: 'Lighting/D1 SC/SC/M002300004300.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
     { objPath: 'Lighting/D3 Hall SC/SC/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/SC/M002300002000.mtl' },
-    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelLightTIFiles = [
@@ -78,14 +77,13 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D1 SC/TI/M002300004300.OBJ', mtlPath: 'Lighting/D1 SC/TI/M002300004300.mtl' },    
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
     { objPath: 'Lighting/D3 Hall SC/TI/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/TI/M002300002000.mtl' },
-    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelDrawSCFiles = [
     { objPath: 'Drawers/B1A SE SW w drawers/SC/M002300005400.OBJ', mtlPath: 'Drawers/B1A SE SW w drawers/SC/M002300005400.mtl' },
     { objPath: 'Drawers/B1N PC w- drawers/SC/M002300006500.OBJ', mtlPath: 'Drawers/B1N PC w- drawers/SC/M002300006500.mtl' },
     { objPath: 'Drawers/B2 w drawers/SC/M002300007100.OBJ', mtlPath: 'Drawers/B2 w drawers/SC/M002300007100.mtl' },
-    { objPath: 'Drawers/B3 w drawers/SC/M002300003300.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/M002300003300.mtl' },
+    { objPath: 'Drawers/B3 w drawers/SC/B3-PC-SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3-PC-SC.mtl' },
     { objPath: 'Drawers/C1 SC w drawers/SC/M002300004000.OBJ', mtlPath: 'Drawers/C1 SC w drawers/SC/M002300004000.mtl' },
     { objPath: 'Drawers/C1 PC w drawers/SC/M002300007800.OBJ', mtlPath: 'Drawers/C1 PC w drawers/SC/M002300007800.mtl' },
     { objPath: 'Drawers/C2 PC w drawers/SC/M002300004000.OBJ', mtlPath: 'Drawers/C2 PC w drawers/SC/M002300004000.mtl' },
@@ -93,15 +91,13 @@ export const modelSCFiles = [
     { objPath: 'Drawers/D1 SC/SC/M002300004300.OBJ', mtlPath: 'Drawers/D1 SC/SC/M002300004300.mtl' },
     { objPath: 'Drawers/D2 PC/SC/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/SC/M002300001500.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
-    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
   export const modelDrawTIFiles = [
     { objPath: 'Drawers/B1A SE SW w drawers/TI/M002300005400.OBJ', mtlPath: 'Drawers/B1A SE SW w drawers/TI/M002300005400.mtl' },
     { objPath: 'Drawers/B1N PC w- drawers/TI/M002300006500.OBJ', mtlPath: 'Drawers/B1N PC w- drawers/TI/M002300006500.mtl' },
     { objPath: 'Drawers/B2 w drawers/TI/M002300007100.OBJ', mtlPath: 'Drawers/B2 w drawers/TI/M002300007100.mtl' },
-    { objPath: 'Drawers/B3 w drawers/TI/M002300003300.OBJ', mtlPath: 'Drawers/B3 w drawers/TI/M002300003300.mtl' },
-    // { objPath: 'Drawers/B3 PC TI.OBJ', mtlPath: 'Drawers/B3 PC TI.mtl' },
+    { objPath: 'Drawers/B3 w drawers/TI/B3-PC-SC.OBJ', mtlPath: 'Drawers/B3 w drawers/TI/B3-PC-SC.mtl' },
     { objPath: 'Drawers/C1 SC w drawers/TI/M002300008200.OBJ', mtlPath: 'Drawers/C1 SC w drawers/TI/M002300008200.mtl' },
     { objPath: 'Drawers/C1 PC w drawers/TI/M002300007800.OBJ', mtlPath: 'Drawers/C1 PC w drawers/TI/M002300007800.mtl' },    
     { objPath: 'Drawers/C2 PC w drawers/TI/M002300004000.OBJ', mtlPath: 'Drawers/C2 PC w drawers/TI/M002300004000.mtl' },
@@ -109,7 +105,6 @@ export const modelSCFiles = [
     { objPath: 'Drawers/D1 SC/TI/M002300004300.OBJ', mtlPath: 'Drawers/D1 SC/TI/M002300004300.mtl' },
     { objPath: 'Drawers/D2 PC/TI/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/TI/M002300001500.mtl' },    
     { objPath: 'Drawers/D3 Hall/TI/M002300002000.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002000.mtl' },
-    { objPath: 'Drawers/B3 w drawers/SC/B3 SC.OBJ', mtlPath: 'Drawers/B3 w drawers/SC/B3 SC.mtl' },
   ];
 
 //   -------------------------------------------------------------------------------------------------
@@ -527,12 +522,13 @@ export const bedRoom = [
               title: 'Primary Bedroom Closet',
               image: 'BedRooms/Two Bedroom/B3/B3 - Primary Closet.jpg',
               modelId: 8,
-              // addOnsId: 3, 
-              addOnsId: 11,
+              addOnsId: 3,
+              rotation_light: ([-Math.PI / 2, 0, Math.PI /4]),
+              scale_light:0.0048,
+              position_light: [-8, -6, 0],  // for TI
               rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.000005,
-              position: [-30, -6, 0], // for SC
-              // position: [-5, -6, 2],  // for TI
+              scale:0.14,
+              position: [-8, -7, 8], // for SC
               price:13400
             },
             {
@@ -688,9 +684,14 @@ export const bedRoom = [
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Three Bedroom/C3/C3 - Reach In Closet.jpg',
               modelId: 15,
-              addOnsId: 7,
-              rotation: ([-Math.PI / 2, 0, -Math.PI*4/5]),
-              position: [8, -7, 0],
+              // addOnsId: 7,
+              rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+              // position: [8, -7, 0],
+              // rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+              scale:0.005,
+              position: [-8, -7, 0], // for SC
+              addOnsId: 10,
+
               drawerPrice:0,
               lightingPrice: 800,
               price: 6700
