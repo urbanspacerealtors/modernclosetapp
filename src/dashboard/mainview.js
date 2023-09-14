@@ -140,6 +140,8 @@ const MainViewer = () => {
         setObjPositon_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position_light)
         setRotation_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation_light)
         setObjScale_light(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.scale_light)
+        if(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0]?.largeoption)
+          setLargeOption(true);
       } else {
         setObjPositon(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].position)
         setRotation(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].rotation)
@@ -184,11 +186,17 @@ const MainViewer = () => {
       setObjPositon_light(bedRoomInfo?.children[id].position_light);
       setRotation_light(bedRoomInfo?.children[id].rotation_light);
       setObjScale_light(bedRoomInfo?.children[id]?.scale_light);
-      setLargeOption(true);
+      if(bedRoomInfo?.children[id]?.largeoption)
+        setLargeOption(true);
     } else {
+      setObjPositon_origin(bedRoomInfo?.children[id].position);
+      setRotation_origin(bedRoomInfo?.children[id].rotation);
+      setObjScale_origin(bedRoomInfo?.children[id]?.scale);
+      setObjScale_light(bedRoomInfo?.children[id]?.scale_light);
+
       setObjPositon(bedRoomInfo?.children[id].position);
       setRotation(bedRoomInfo?.children[id].rotation);
-      setObjScale(bedRoomInfo?.children[id]?.scale ?? 0.005);
+      setObjScale(bedRoomInfo?.children[id]?.scale);
       setLargeOption(false);
     }    
 
@@ -241,16 +249,18 @@ const MainViewer = () => {
           setRotation(rotation_light);
           setObjPositon(objPositon_light);
           setObjScale(objScale_light);
-          setLargeOption(true);
+          setLargeOption(false);
         } else {
           setRotation(rotation_origin);
           setObjPositon(objPositon_origin);
           setObjScale(objScale_origin);
           setLargeOption(true);
+          console.log('aaaa', objScale_light)
         }
       }      
     }
     setTotalValue(tempvalue);
+    handleReset();
   }
 
   // zoom in and out
@@ -273,7 +283,6 @@ const MainViewer = () => {
       }
 
       currentZoom += temp;
-      console.log(currentZoom);
       if (currentZoom >= 5 && currentZoom <= 50) {
         setZoomState(100 - currentZoom*2);
         
@@ -386,7 +395,7 @@ const MainViewer = () => {
                   </>
                 )}
 
-                {/* {lightOption && <pointLight intensity='100' position={[0, 0, 5]}/> } */}
+                <pointLight intensity='200' position={[0, -11, 5]}/>
 
                 <OrbitControls 
                   ref={controlsRef}
@@ -571,7 +580,7 @@ const MainViewer = () => {
               <div className="col-6">
                 <img
                   src={SilverImage}
-                  style={{ objectFit: 'contain', width: '14vh' }}
+                  style={{ objectFit: 'contain', width: '12vh' }}
                   alt="" />
               </div>
               <div className="col-6">
@@ -590,7 +599,7 @@ const MainViewer = () => {
               <div className="col-6">
                 <img
                   src={TatamiImage}
-                  style={{ objectFit: 'contain', width: '14vh' }}
+                  style={{ objectFit: 'contain', width: '12vh' }}
                   alt="" />
               </div>
               <div className="col-6" >
