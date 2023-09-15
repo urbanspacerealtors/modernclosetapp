@@ -376,7 +376,40 @@ export const bedRoom = [
             ],
         },
     ],
-    [
+    [  {
+      title: 'B1-A',
+      image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
+      drawerPrice:4300,
+      lightingPrice: 6400,
+      children: [
+        {
+          id: 'primary',
+          title: 'Primary Bedroom Closet',
+          image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
+          modelId: 20,
+          addOnsId: 1,
+          rotation_light: ([-Math.PI / 2, 0, -Math.PI*19/20]),
+          scale_light:0.0048,
+          position_light: [10, -7, 6],  // for nomal
+          rotation: ([Math.PI, -0.3, Math.PI]),
+          scale:0.14,
+          position: [8, -8, -8], // for large
+          price: 10600
+        },
+        {
+          id: 'second',
+          title: 'Second Bedroom Closet',
+          image: 'BedRooms/Two Bedroom/B1SE/B1SE - Reach In Closet.jpg',
+          modelId: 20,
+          addOnsId: -1,
+          position: [-8, -7, 0],
+          rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+          scale:0.0048,
+
+          price:5800
+        },
+      ],
+  },
       {
           title: 'B1-N',
           image: 'BedRooms/Two Bedroom/B1N/B1N - Primary Closet.jpg',
@@ -737,7 +770,6 @@ export const bedRoom = [
               modelId: 0,
               drawerPrice:2500,
               lightingPrice: 3700,
-
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
               scale:0.0048,
               position: [-8, -7, 0], // for SC
@@ -745,6 +777,101 @@ export const bedRoom = [
             },
           ],
       },
+      {
+        title: 'C1.1',
+        image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+        drawerPrice:4400,
+        lightingPrice: 6200,
+        children: [
+          {
+            id: 'primary',
+            title: 'Primary Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+            addOnsId: 5, // default 9
+            modelId: 20,
+            rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
+            scale_light:0.0048,
+            position_light: [-8, -7, 0],  // for nomal
+            rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+            scale:0.14,
+            position: [-8, -7, 8], // for SC
+            price:13000
+          },
+          {
+            id: 'second',
+            title: 'Second Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Reach In Closet.jpg',
+            addOnsId: -1,
+            modelId: 20,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            position: [-8, -7, 0],
+            price: 6100,
+
+            scale:0.0048,
+          },
+          {
+            id: 'third',
+            title: 'Third Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Secondary Closet.jpg',
+            addOnsId: 8,
+            modelId: 0,
+            drawerPrice:2500,
+            lightingPrice: 3700,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            scale:0.0048,
+            position: [-8, -7, 0], // for SC
+            price: 8100
+          },
+        ],
+    },
+    {
+      title: 'C1-A',
+      image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+      drawerPrice:4400,
+      lightingPrice: 6200,
+      children: [
+        {
+          id: 'primary',
+          title: 'Primary Bedroom Closet',
+          image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+          addOnsId: 5, // default 9
+          modelId: 20,
+          rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
+          scale_light:0.0048,
+          position_light: [-8, -7, 0],  // for nomal
+          rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+          scale:0.14,
+          position: [-8, -7, 8], // for SC
+          price:13000
+        },
+        {
+          id: 'second',
+          title: 'Second Bedroom Closet',
+          image: 'BedRooms/Three Bedroom/C1/C1 - Reach In Closet.jpg',
+          addOnsId: -1,
+          modelId: 20,
+          rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+          position: [-8, -7, 0],
+          price: 6100,
+
+          scale:0.0048,
+        },
+        {
+          id: 'third',
+          title: 'Third Bedroom Closet',
+          image: 'BedRooms/Three Bedroom/C1/C1 - Secondary Closet.jpg',
+          addOnsId: 8,
+          modelId: 0,
+          drawerPrice:2500,
+          lightingPrice: 3700,
+          rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+          scale:0.0048,
+          position: [-8, -7, 0], // for SC
+          price: 8100
+        },
+      ],
+  },
+      
       {
           title: 'C2',
           image: 'BedRooms/Three Bedroom/C2/C2 - Primary Closet.jpg',
@@ -851,7 +978,7 @@ export const bedRoom = [
               addOnsId: 20,
               rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
               scale_light:0.12,
-              position_light: [-6, -7, 4],  // for nomal
+              position_light: [-6, -7, 8],  // for nomal
               drawerPrice:0,
               lightingPrice: 800,
               price: 6700
@@ -870,7 +997,63 @@ export const bedRoom = [
           ],
       },
       {
-          title: 'COS',
+        title: 'C0N',
+        image: 'BedRooms/Three Bedroom/CON/CON - Primary Closet.jpg',
+        drawerPrice:4000,
+        lightingPrice: 5800,
+        children: [
+          {
+            id: 'primary',
+            title: 'Primary Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/CON/CON - Primary Closet.jpg',
+            addOnsId: 5,
+            modelId: 26,
+            rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
+            scale_light:0.0048,
+            position_light: [-8, -7, 0],  // for nomal
+            rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+            scale:0.14,
+            position: [-8, -7, 8], // for SC
+            price: 12700
+          },
+        
+          {
+            id: 'second',
+            title: 'Second Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 2.jpg',
+            modelId: 14,
+            addOnsId: -1,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            position: [-8, -7, 0],
+            scale:0.005,
+            price: 9800
+          },
+          {
+            id: 'third',
+            title: 'Third Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 1.jpg',
+            addOnsId: -1,
+            modelId: 24,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            position: [-8, -7, 0],
+            scale:0.005,
+            price: 6100
+          },
+          {
+            id: 'fourth',
+            title: 'Hall Closet',
+            image: 'BedRooms/Three Bedroom/CON/CON - Hall Closet.jpg',
+            modelId: 14,
+            addOnsId: -1,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            position: [-8, -7, 0],
+            scale:0.005,
+            price: 9800
+          },
+        ],
+    },
+      {
+          title: 'C0S',
           image: 'BedRooms/Three Bedroom/COS/COS - Primary Closet.jpg',
           drawerPrice:4000,
           lightingPrice: 5800,
