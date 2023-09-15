@@ -1270,7 +1270,7 @@ export const bedRoom = [
               price: 17400
             },
             {
-              id: 'four',
+              id: 'second',
               title: 'Secondary Bedroom Closet',
               image: 'BedRooms/Five Bedroom/D3/D3 - The Modern - Third Bedroom Highlight.jpg',
               modelId: 24,
@@ -1282,7 +1282,7 @@ export const bedRoom = [
               price: 6200
             },
             {
-              id: 'five',
+              id: 'third',
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Five Bedroom/D3/D3 - Secondary Closet.jpg',
               modelId: 18,
@@ -1297,7 +1297,7 @@ export const bedRoom = [
               price: 8100
             },
             {
-              id: 'second',
+              id: 'fourth',
               title: 'Hall Closet',
               image: 'BedRooms/Five Bedroom/D3/D3 - Hall Closet.jpg',
               modelId: 18,
@@ -1312,7 +1312,7 @@ export const bedRoom = [
               price: 11000
             },
             {
-              id: 'third',
+              id: 'fifth',
               title: 'Media Closet',
               image: 'BedRooms/Five Bedroom/D3/D3 - Media Closet.jpg',
               modelId: 18,
