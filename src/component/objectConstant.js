@@ -95,7 +95,9 @@ export const modelSCFiles = [
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
-    { objPath: 'basicObject/C3-SC-SC.OBJ', mtlPath: 'basicObject/C3-SC-SC.mtl' }
+    { objPath: 'basicObject/C3-SC-SC.OBJ', mtlPath: 'basicObject/C3-SC-SC.mtl' },
+    { objPath: 'Drawers/D1-BC3/D1-BC3-SC.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-SC.mtl' },
+    { objPath: 'Lighting/CON-HC/CON SC.OBJ', mtlPath: 'Lighting/CON-HC/CON SC.mtl' },
 
   ];
 
@@ -129,8 +131,9 @@ export const modelSCFiles = [
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.mtl' },
     { objPath: 'Drawers/D3 Hall/TI/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002300.mtl' },
-    { objPath: 'basicObject/C3-SC-TI.OBJ', mtlPath: 'basicObject/C3-SC-TI.mtl' }
-
+    { objPath: 'basicObject/C3-SC-TI.OBJ', mtlPath: 'basicObject/C3-SC-TI.mtl' },
+    { objPath: 'Drawers/D1-BC3/D1-BC3-TI.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-TI.mtl' },
+    { objPath: 'Lighting/CON-HC/CON TI.OBJ', mtlPath: 'Lighting/CON-HC/CON TI.mtl' },
   ];
 
   export const modelDrawSCFiles = [
@@ -163,6 +166,7 @@ export const modelSCFiles = [
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
+
   ];
 
   export const modelDrawTIFiles = [
@@ -195,6 +199,7 @@ export const modelSCFiles = [
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.mtl' },   
     { objPath: 'Drawers/D3 Hall/TI/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002300.mtl' },
+
   ];
 
 //   -------------------------------------------------------------------------------------------------
@@ -1020,18 +1025,18 @@ export const bedRoom = [
           {
             id: 'second',
             title: 'Second Bedroom Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 2.jpg',
-            modelId: 14,
+            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 1.jpg',
+            modelId: 23,
             addOnsId: -1,
             rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-            position: [-8, -7, 0],
+            position: [-12, -7, 0],
             scale:0.005,
             price: 9800
           },
           {
             id: 'third',
             title: 'Third Bedroom Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 1.jpg',
+            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 2.jpg',
             addOnsId: -1,
             modelId: 24,
             rotation: ([-Math.PI / 2, 0, Math.PI /4]),
@@ -1044,11 +1049,13 @@ export const bedRoom = [
             title: 'Hall Closet',
             image: 'BedRooms/Three Bedroom/CON/CON - Hall Closet.jpg',
             modelId: 14,
-            addOnsId: -1,
-            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-            position: [-8, -7, 0],
-            scale:0.005,
-            price: 9800
+            addOnsId: 22,
+            rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
+            position_light: [-8, -7, 8],
+            scale_light:0.14,
+            drawerPrice:0,
+            lightingPrice: 1800,
+            price: 8400
           },
         ],
     },
@@ -1087,10 +1094,10 @@ export const bedRoom = [
               id: 'third',
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Three Bedroom/COS/COS - Reach In Closet 1.jpg',
-              modelId: 14,
+              modelId: 23,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-12, -7, 0],
               scale:0.005,
               price: 9800
             },
@@ -1112,15 +1119,14 @@ export const bedRoom = [
               addOnsId: 11,
 
               rotation_light: ([-Math.PI, -Math.PI/4, -Math.PI]),
-              scale_light:0.14,
-              position_light: [-6, -7, -15],  // for nomal
+              scale_light:0.13,
+              position_light: [-3, -7, -15],  // for nomal
               scale:0.004,
               largeoption: true,
               price: 19800
             },
-            ,
             {
-              id: 'four',
+              id: 'second',
               title: 'Second Bedroom Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Reach In.jpg',
               modelId: 12,
@@ -1131,21 +1137,22 @@ export const bedRoom = [
               price: 6400
             },
             {
-              id: 'five',
+              id: 'third',
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Secondary Closet.jpg',
               modelId: 27,
-              addOnsId: 15, // default 9
+              addOnsId: 21, // default 9
               rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
               scale_light:0.12,
               position_light: [-15, -7, 4],  // for nomal
-              
               drawerPrice:0,
+              largeoption: true,
+
               lightingPrice: 1900,
               price: 15000
             },
             {
-              id: 'second',
+              id: 'fourth',
               title: ' Hall Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Hall Closet.jpg',
               modelId: 16,
@@ -1156,7 +1163,7 @@ export const bedRoom = [
               price: 5700
             },
             {
-              id: 'third',
+              id: 'fifth',
               title: ' Den Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Media Closet.jpg',
               modelId: 25,
@@ -1167,7 +1174,7 @@ export const bedRoom = [
               price: 7000
             },
             {
-              id: 'sixth',
+              id: 'six',
               title: ' Linen Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Linen Closet.jpg',
               modelId: 28,
