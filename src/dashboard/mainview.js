@@ -165,7 +165,6 @@ const MainViewer = () => {
        
     setAddOnsId(bedRoomInfo?.children[id].addOnsId ?? 0); // object id
     setPrice(bedRoomInfo?.children[id].price ?? 0); // object id
-
     if(bedRoomInfo?.children[id]?.lightingPrice > 0){
       setDrawPrice(bedRoomInfo?.children[id]?.drawerPrice ?? 0);
       setLightPrice(bedRoomInfo?.children[id]?.lightingPrice ?? 0);
@@ -562,9 +561,9 @@ const MainViewer = () => {
               </div>
               <hr className="sentient-underline" />
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue?.toLocaleString()}</h2>
-              <p className="sentient-content"> price includes tax + installation</p>
+              <p className="sentient-content"> Price includes tax, shipping from Italy, delivery, and installation.</p>
 
-              <h3 className="sentient-contenttitle pt-3"> <b>important:</b> Closet selections must be selected & purchased on <br /> Formsite: link to formsite</h3>
+              <h3 className="sentient-contenttitle pt-3"> <b>Important:</b> Closet selections must be selected & purchased on <br /> <a style={{ color: '#294734', fontWeight: '700' }} target="_blank" href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index">Formsite</a>.</h3>
             </div>
           </div>
         </div>
