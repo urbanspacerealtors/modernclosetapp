@@ -549,12 +549,19 @@ const MainViewer = () => {
               <div className="row col-12">
                 <div className="col-md-6 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>{`Price: $${price?.toLocaleString()}`}</h3>
-                  {lightOption && (
-                    <h3 className="sentient-contenttitle">{`+ lighting add-on:$${(lightPrice-drawPrice)?.toLocaleString()}`}</h3>
+                  {lightOption && drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
                   )}
-                  {drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ drawers add-on:$${drawPrice?.toLocaleString()}`}</h3>
+                  {!lightOption && drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
                   )}
+                  {lightOption && !drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${lightPrice?.toLocaleString()}`}</h3>
+                  )}
+                  {lightOption && !drawersOption && !drawPrice &&(
+                    <h3 className="sentient-contenttitle">{`+ Lighting add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
+                  )}
+                              
                 </div>
                 <div className="col-md-6 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Finish: {finishOption === true ? 'Silver Cembran' : 'Tatami Ivory'}</h3>
@@ -628,17 +635,6 @@ const MainViewer = () => {
               </div>
               <span className="sentient-contenttitle">[optional]</span>
 
-              <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(true) : undefined}>
-                <img
-                  src={lightOption === true ? CheckSelectImage : CheckImage}
-                  style={{ height: '25px', width: '25px' }}
-                  alt="" />
-                <span className={`sentient-contenttitle`}>&nbsp; Lighting </span>
-              </div>
-              <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
-                &nbsp; {`additional cost:$${(lightPrice-drawPrice)?.toLocaleString()}`}
-              </span>
-
               {drawPrice > 0 && (
                 <>
                   <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(false) : undefined}>
@@ -651,6 +647,21 @@ const MainViewer = () => {
                   <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>&nbsp; {`additional cost: $${drawPrice?.toLocaleString()}`}</span>            
                 </>
               )}
+
+              <div className="pt-3 d-flex align-items-center" onClick={addOnsId >= 0 ? () => handleAddOption(true) : undefined}>
+                <img
+                  src={lightOption === true ? CheckSelectImage : CheckImage}
+                  style={{ height: '25px', width: '25px' }}
+                  alt="" />
+                 <span className="sentient-contenttitle">
+                    &nbsp; {drawPrice > 0 ? 'Lighting + Drawers' : 'Lighting'}
+                  </span>
+              </div>
+              <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
+                &nbsp; {`additional cost: $${(lightPrice)?.toLocaleString()}`}
+              </span>
+
+              
             </div>
           )} 
           <div>
