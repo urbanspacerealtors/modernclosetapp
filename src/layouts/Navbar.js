@@ -12,6 +12,7 @@ const NavbarPage = (props) => {
   return (
     <>
       <CNavbar expand="md" colorScheme="light" className="px-md-5 px-3 d-flex justify-content-between m-0 p-0" style={{ height: '125px', backgroundColor: '#294734'}}>
+          <CContainer fluid>
           <CNavbarBrand href="/" className="d-flex justify-content-start">
                <img
                 className="w-100"
@@ -31,11 +32,12 @@ const NavbarPage = (props) => {
                 <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> ALREADY DECIDED? <br /> CLICK HERE TO PURCHASE </h2>
               </a>
             </div>
-            <div className="d-md-none d-flex justify-content-end">
+            <div className="d-md-none d-flex">
               <a href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
                 <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> PURCHASE </h2>
               </a>
             </div>
+            </CContainer>
       </CNavbar>
     </>
   )
