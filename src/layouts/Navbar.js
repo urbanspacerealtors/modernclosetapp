@@ -13,7 +13,7 @@ const NavbarPage = (props) => {
     <>
       <CNavbar expand="md" colorScheme="light" className="px-3 d-flex justify-content-between m-0 p-0" style={{ height: '125px', backgroundColor: '#294734'}}>
         <CContainer fluid >
-          <CNavbarBrand href="#" className="d-flex justify-content-start">
+          <CNavbarBrand href="/" className="d-flex justify-content-start">
             <CNavLink to="/" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
                <img
                 className="w-100"

@@ -548,11 +548,14 @@ const MainViewer = () => {
               <div className="row col-12">
                 <div className="col-md-7 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>{`Price: $${price?.toLocaleString()}`}</h3>
-                  {lightOption && (
-                    <h3 className="sentient-contenttitle">{`+ lighting + drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
+                  {lightOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
                   )}
-                  {drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
+                  {lightOption && drawPrice === 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Lighting add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
+                    )}
+                  {!lightOption && drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ Drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
                   )}
                 </div>
                 <div className="col-md-5 col-12">
@@ -561,10 +564,9 @@ const MainViewer = () => {
               </div>
               <hr className="sentient-underline" />
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue?.toLocaleString()}</h2>
-              <p className="sentient-content"> price includes tax + installation</p>
+              <p className="sentient-content"> Price includes tax, shipping from Italy, delivery, and installation.</p>
 
-              <h3 className="sentient-contenttitle pt-3"> <b>important:</b> Closet selections must be selected & purchased on <br /> Formsite: link to formsite</h3>
-            </div>
+              <h3 className="sentient-contenttitle pt-3"> <b>Important:</b> Closet selections must be selected & purchased on <a style={{ color: '#294734', fontWeight: '700' }} href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index">Formsite</a>.</h3>            </div>
           </div>
         </div>
 
@@ -650,7 +652,7 @@ const MainViewer = () => {
                 <span className={`sentient-contenttitle`}> &nbsp; {drawPrice > 0 ? 'Lighting + Drawers' : 'Lighting'} </span>
               </div>
               <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
-                &nbsp; {`additional cost:$${(lightPrice)?.toLocaleString()}`}
+                &nbsp; {`additional cost: $${(lightPrice)?.toLocaleString()}`}
               </span>              
             </div>
           )} 
