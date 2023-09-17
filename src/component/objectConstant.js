@@ -1218,7 +1218,7 @@ export const bedRoom = [
             {
               id: 'fifth',
               title: ' Den Closet',
-              image: 'BedRooms/Five Bedroom/D1/D1 - Media Closet.jpg',
+              image: 'BedRooms/Five Bedroom/D1/D1 - Den.jpg',
               modelId: 25,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
