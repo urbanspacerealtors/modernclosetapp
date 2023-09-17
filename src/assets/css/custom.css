@@ -71,7 +71,7 @@
 
 /* ---landing page---- */
 .sentient-landing {
-	background-image: url('/src/assets/images/background/background-modern.png');
+	background-image: url('/src/assets/images/background/background-modern.jpg');
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 100%;
@@ -103,7 +103,7 @@
 /* ------selfloor page--- */
 
 .sentient-selbedroom {
-	background-image: url('/src/assets/images/background/background-modern.png');
+	background-image: url('/src/assets/images/background/background-modern.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: right center;
