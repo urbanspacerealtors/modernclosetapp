@@ -61,6 +61,9 @@
 }
 
 @media screen and (max-width: 1024px) {
+	.navbar-brand img {
+		max-width: 60% !important;
+	}
 	.sentient-title {
 		font-size: 48px;
 	}
