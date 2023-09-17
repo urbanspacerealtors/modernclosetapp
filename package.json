@@ -9,11 +9,12 @@
   "main": "src/index.js",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@coreui/react": "^5.0.0-alpha.1",
     "@react-three/drei": "^9.78.1",
     "@react-three/fiber": "^8.13.4",
     "@react-three/postprocessing": "^2.15.1",
     "@types/three": "0.153.0",
-    "bootstrap": "^5.3.1",
+    "bootstrap": "^5.3.2",
     "drei": "^2.2.21",
     "gltf-loader": "^1.0.0",
     "postprocessing": "^6.33.0",

@@ -230,18 +230,34 @@ const MainViewer = () => {
     let tempvalue = parseInt(basePrice);
     if(value === true){
       if(lightOption === false)
-        tempvalue += (lightPrice-drawPrice);
-      if(drawersOption && drawPrice > 0)
-        tempvalue += drawPrice;
+        tempvalue += (lightPrice);
 
       setLightOption(!lightOption);
+
+      if(lightOption === false)
+        setDrawersOption(false);
       setLargeOption(false);
+
+      if(objScale_light > 0){
+        if(lightOption === true){        
+          setRotation(rotation_light);
+          setObjPositon(objPositon_light);
+          setObjScale(objScale_light);
+          setLargeOption(false);
+        } else {
+          setRotation(rotation_origin);
+          setObjPositon(objPositon_origin);
+          setObjScale(objScale_origin);
+          setLargeOption(true);
+        }
+      } 
     } else if( value === false) {
       if (drawersOption === false && drawPrice > 0 )
         tempvalue += drawPrice;
-      if(lightOption)
-        tempvalue += (lightPrice-drawPrice);
       setDrawersOption(!drawersOption);
+
+      if(drawersOption === false)
+        setLightOption(false);
       setLargeOption(false);
 
       if(objScale_light > 0){
@@ -255,12 +271,11 @@ const MainViewer = () => {
           setObjPositon(objPositon_origin);
           setObjScale(objScale_origin);
           setLargeOption(true);
-          console.log('aaaa', objScale_light)
         }
-      }      
+      } 
     }
     setTotalValue(tempvalue);
-    handleReset();
+    handleReset()
   }
 
   // zoom in and out
@@ -338,7 +353,7 @@ const MainViewer = () => {
       <div className=" row col-12 px-lg-5 px-3 m-0 p-0">
         
         {/* left Section */}
-        <div className="col-lg-3 col-12 pt-3 m-0 p-0">
+        <div className="col-lg-3 col-12 px-sm-1 px-3 pt-3 m-0 p-0">
           <div>
             <p className="sentient-content" style={{ color: '#294734' }}>{selRoom} PLANS</p>
             <h1 className="sentient-subtitle" style={{ color: '#294734' }}><b>{floorPlan}</b> FLOOR PLAN</h1>
@@ -428,20 +443,12 @@ const MainViewer = () => {
                     <>
                       {finishOption ? (
                         <>
-                          {drawersOption &&(
+                          {(drawersOption || lightOption) &&(
                             <ObjModel 
                               largeOption={largeOption}
                               rotation={rotation} 
                               objPath={modelDrawSCFiles[addOnsId].objPath} 
                               mtlPath={modelDrawSCFiles[addOnsId].mtlPath} 
-                            />
-                          )}
-                          {!drawersOption && lightOption && (
-                            <ObjModel 
-                              largeOption={largeOption}
-                              rotation={rotation} 
-                              objPath={modelLightSCFiles[addOnsId].objPath} 
-                              mtlPath={modelLightSCFiles[addOnsId].mtlPath} 
                             />
                           )}
                           {(!drawersOption || drawPrice <= 0) && !lightOption && (
@@ -455,20 +462,12 @@ const MainViewer = () => {
                         </>
                       ) : (
                         <>
-                          {drawersOption &&(
+                          {(drawersOption || lightOption) &&(
                             <ObjModel 
                               largeOption={largeOption}
                               rotation={rotation} 
                               objPath={modelDrawTIFiles[addOnsId].objPath} 
                               mtlPath={modelDrawTIFiles[addOnsId].mtlPath} 
-                            />
-                          )}
-                          {!drawersOption && lightOption && (
-                            <ObjModel
-                              largeOption={largeOption} 
-                              rotation={rotation} 
-                              objPath={modelLightTIFiles[addOnsId].objPath} 
-                              mtlPath={modelLightTIFiles[addOnsId].mtlPath} 
                             />
                           )}
                           {(!drawersOption || drawPrice <= 0) && !lightOption && (
@@ -547,47 +546,41 @@ const MainViewer = () => {
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>{bedroomClosetName} [<b>{floorPlan}</b>]</h2>
               <hr className="sentient-underline" />
               <div className="row col-12">
-                <div className="col-md-6 col-12">
+                <div className="col-md-7 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>{`Price: $${price?.toLocaleString()}`}</h3>
-                  {lightOption && drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
+                  {lightOption && (
+                    <h3 className="sentient-contenttitle">{`+ lighting + drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
                   )}
-                  {!lightOption && drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
+                  {drawersOption && drawPrice > 0 && (
+                    <h3 className="sentient-contenttitle">{`+ drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
                   )}
-                  {lightOption && !drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${lightPrice?.toLocaleString()}`}</h3>
-                  )}
-                  {lightOption && !drawersOption && !drawPrice &&(
-                    <h3 className="sentient-contenttitle">{`+ Lighting add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
-                  )}
-                              
                 </div>
-                <div className="col-md-6 col-12">
+                <div className="col-md-5 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Finish: {finishOption === true ? 'Silver Cembran' : 'Tatami Ivory'}</h3>
                 </div>
               </div>
               <hr className="sentient-underline" />
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue?.toLocaleString()}</h2>
-              <p className="sentient-content"> Price includes tax, shipping from Italy, delivery, and installation.</p>
+              <p className="sentient-content"> price includes tax + installation</p>
 
-              <h3 className="sentient-contenttitle pt-3"> <b>Important:</b> Closet selections must be selected & purchased on <a style={{ color: '#294734', fontWeight: '700' }} href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index">Formsite</a>.</h3>
+              <h3 className="sentient-contenttitle pt-3"> <b>important:</b> Closet selections must be selected & purchased on <br /> Formsite: link to formsite</h3>
             </div>
           </div>
         </div>
 
         {/* right section */}
-        <div className="col-lg-3 col-12 py-3 m-0 p-0">
+        <div className="col-lg-3 col-12 py-3 px-3 m-0 p-0">
           <div>
             <p className="sentient-subtitle" style={{ color: '#294734', fontWeight: '700' }}>Finish Options</p>
             <h1 className="sentient-content" style={{ color: '#294734' }}>Click to toggle:</h1>
           </div>
           <div>
             <div className="pt-2 row col-12 d-flex align-items-center" style={{ cursor: 'pointer'}} onClick={() => handleFinishOption(true)}>
-              <div className="col-6"  style={{ overflow: 'hidden'  }}>
+              <div className="col-6">
                 <img
+                  className='w-100'
                   src={SilverImage}
-                  style={{ objectFit: 'contain', width: '12vh' }}
+                  style={{ objectFit: 'contain', maxWidth: '14vh' }}
                   alt="" />
               </div>
               <div className="col-6">
@@ -603,10 +596,11 @@ const MainViewer = () => {
               </div>
             </div>
             <div className="pt-2 row col-12 d-flex align-items-center" style={{ cursor: 'pointer'}} onClick={() => handleFinishOption(false)}>
-              <div className="col-6" style={{ overflow: 'hidden'  }}>
+              <div className="col-6">
                 <img
                   src={TatamiImage}
-                  style={{ objectFit: 'contain', width: '12vh'  }}
+                  className='w-100'
+                  style={{ objectFit: 'contain', maxWidth: '14vh' }}
                   alt="" />
               </div>
               <div className="col-6" >
@@ -653,15 +647,11 @@ const MainViewer = () => {
                   src={lightOption === true ? CheckSelectImage : CheckImage}
                   style={{ height: '25px', width: '25px' }}
                   alt="" />
-                 <span className="sentient-contenttitle">
-                    &nbsp; {drawPrice > 0 ? 'Lighting + Drawers' : 'Lighting'}
-                  </span>
+                <span className={`sentient-contenttitle`}> &nbsp; {drawPrice > 0 ? 'Lighting + Drawers' : 'Lighting'} </span>
               </div>
               <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
-                &nbsp; {`additional cost: $${(lightPrice)?.toLocaleString()}`}
-              </span>
-
-              
+                &nbsp; {`additional cost:$${(lightPrice)?.toLocaleString()}`}
+              </span>              
             </div>
           )} 
           <div>

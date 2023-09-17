@@ -161,11 +161,14 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D1 Linen/D1 Linen.OBJ', mtlPath: 'Lighting/D1 Linen/D1 Linen.mtl' },
     { objPath: 'Lighting/D1-BC3/D1-BC3-SC.OBJ', mtlPath: 'Lighting/D1-BC3/D1-BC3-SC.mtl' },
 
-    { objPath: 'Drawers/D2 PC/SC/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/SC/M002300001500.mtl' },
-    { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
+    { objPath: 'Lighting/D2-SC/D2-SC-SC.OBJ', mtlPath: 'Lighting/D2-SC/D2-SC-SC.mtl'},
+    { objPath: 'Lighting/D3 Hall SC/SC/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/SC/M002300002000.mtl' },
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-SC.mtl' },
     { objPath: 'Drawers/D3 Hall/SC/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/SC/M002300002300.mtl' },
+    { objPath: 'basicObject/C3-SC-SC.OBJ', mtlPath: 'basicObject/C3-SC-SC.mtl' },
+    { objPath: 'Drawers/D1-BC3/D1-BC3-SC.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-SC.mtl' },
+    { objPath: 'Lighting/CON-HC/CON SC.OBJ', mtlPath: 'Lighting/CON-HC/CON SC.mtl' },
 
   ];
 
@@ -192,13 +195,16 @@ export const modelSCFiles = [
 
     { objPath: 'Drawers/D1 SC/TI/M002300004300.OBJ', mtlPath: 'Drawers/D1 SC/TI/M002300004300.mtl' },
     { objPath: 'Lighting/D1 Linen/D1 Linen.OBJ', mtlPath: 'Lighting/D1 Linen/D1 Linen.mtl' },
-    { objPath: 'Lighting/D1-BC3/D2-SC-TI.OBJ', mtlPath: 'Lighting/D1-BC3/D2-SC-TI.mtl' },
+    { objPath: 'Lighting/D1-BC3/D1-BC3-TI.OBJ', mtlPath: 'Lighting/D1-BC3/D1-BC3-TI.mtl' },
 
-    { objPath: 'Drawers/D2 PC/TI/M002300001500.OBJ', mtlPath: 'Drawers/D2 PC/TI/M002300001500.mtl' },    
+    { objPath: 'Lighting/D2-SC/D2-SC-TI.OBJ', mtlPath: 'Lighting/D2-SC/D2-SC-TI.mtl'},    
     { objPath: 'Drawers/D3 Hall/TI/M002300002000.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002000.mtl' },
 
     { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.mtl' },   
     { objPath: 'Drawers/D3 Hall/TI/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002300.mtl' },
+    { objPath: 'basicObject/C3-SC-TI.OBJ', mtlPath: 'basicObject/C3-SC-TI.mtl' },
+    { objPath: 'Drawers/D1-BC3/D1-BC3-TI.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-TI.mtl' },
+    { objPath: 'Lighting/CON-HC/CON TI.OBJ', mtlPath: 'Lighting/CON-HC/CON TI.mtl' },
 
   ];
 
@@ -381,40 +387,41 @@ export const bedRoom = [
             ],
         },
     ],
-    [  {
-      title: 'B1-A',
-      image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
-      drawerPrice:4300,
-      lightingPrice: 6400,
-      children: [
-        {
-          id: 'primary',
-          title: 'Primary Bedroom Closet',
-          image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
-          modelId: 20,
-          addOnsId: 1,
-          rotation_light: ([-Math.PI / 2, 0, -Math.PI*19/20]),
-          scale_light:0.0048,
-          position_light: [10, -7, 6],  // for nomal
-          rotation: ([Math.PI, -0.3, Math.PI]),
-          scale:0.14,
-          position: [8, -8, -8], // for large
-          price: 10600
-        },
-        {
-          id: 'second',
-          title: 'Second Bedroom Closet',
-          image: 'BedRooms/Two Bedroom/B1SE/B1SE - Reach In Closet.jpg',
-          modelId: 20,
-          addOnsId: -1,
-          position: [-8, -7, 0],
-          rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-          scale:0.0048,
+    [  
+      {
+        title: 'B1-A',
+        image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
+        drawerPrice:4300,
+        lightingPrice: 6400,
+        children: [
+          {
+            id: 'primary',
+            title: 'Primary Bedroom Closet',
+            image: 'BedRooms/Two Bedroom/B1SE/B1SE - Primary Closet.jpg',
+            modelId: 20,
+            addOnsId: 1,
+            rotation_light: ([-Math.PI / 2, 0, -Math.PI*19/20]),
+            scale_light:0.0048,
+            position_light: [10, -7, 6],  // for nomal
+            rotation: ([Math.PI, -0.3, Math.PI]),
+            scale:0.14,
+            position: [8, -8, -8], // for large
+            price: 10600
+          },
+          {
+            id: 'second',
+            title: 'Second Bedroom Closet',
+            image: 'BedRooms/Two Bedroom/B1SE/B1SE - Reach In Closet.jpg',
+            modelId: 20,
+            addOnsId: -1,
+            position: [-4, -7, 0],
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            scale:0.0048,
 
-          price:5800
-        },
-      ],
-  },
+            price:5800
+          },
+        ],
+      },
       {
           title: 'B1-N',
           image: 'BedRooms/Two Bedroom/B1N/B1N - Primary Closet.jpg',
@@ -427,12 +434,15 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B1N/B1N - Primary Closet.jpg',
               modelId: 20,
               addOnsId: 3,
-              rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
+
+              rotation_light: ([-Math.PI / 2, 0, Math.PI/8]),
               scale_light:0.0048,
-              position_light: [-8, -6, 0],  // for TI
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-8, -8, 0],  // for TI
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-4, -8, 10],
+              
               price: 11700
             },
             {
@@ -441,7 +451,7 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B1N/B1N - Reach In Closet.jpg',
               modelId: 20,
               addOnsId: -1,
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
               scale:0.0048,
 
@@ -463,9 +473,10 @@ export const bedRoom = [
               addOnsId: 1,
               rotation_light: ([-Math.PI / 2, 0, -Math.PI*19/20]),
               scale_light:0.0048,
-              position_light: [10, -7, 6],  // for nomal
+              position_light: [10, -8, 4],  // for nomal
+
               rotation: ([Math.PI, -0.3, Math.PI]),
-              scale:0.14,
+              scale:0.12,
               position: [8, -8, -8], // for large
               price: 10600
             },
@@ -475,7 +486,7 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B1SE/B1SE - Reach In Closet.jpg',
               modelId: 20,
               addOnsId: -1,
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
               scale:0.0048,
 
@@ -497,9 +508,10 @@ export const bedRoom = [
               addOnsId: 1,
               rotation_light: ([-Math.PI / 2, 0, -Math.PI*19/20]),
               scale_light:0.0048,
-              position_light: [10, -7, 6],  // for nomal
+              position_light: [10, -8, 4],  // for nomal
+
               rotation: ([Math.PI, -0.3, Math.PI]),
-              scale:0.14,
+              scale:0.12,
               position: [8, -8, -8], // for large
               price: 10600
             },
@@ -509,7 +521,7 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B1SW/B1SW - Reach In Closet.jpg',
               modelId: 20,
               addOnsId: -1,
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               rotation: ([-Math.PI / 2, 0, Math.PI/4]),
               scale:0.0048,
 
@@ -529,12 +541,15 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B2.1NE/B2.1NE - Primary Closet.jpg',
               modelId: 20,
               addOnsId: 5,
+
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-6, -7, 0],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
+              
               price:12700
             },
             {
@@ -542,7 +557,7 @@ export const bedRoom = [
               title: 'Second Bedroom Closet',
               image: 'BedRooms/Two Bedroom/B2.1NE/B2.1NE - Reach In Closet.jpg',
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               modelId: 20,
               addOnsId: -1,
               scale:0.0048,
@@ -565,10 +580,11 @@ export const bedRoom = [
               addOnsId: 5,
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-6, -7, 0],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
               price:12700
             },
             {
@@ -578,7 +594,7 @@ export const bedRoom = [
               modelId: 20,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
 
               price:6100
@@ -599,10 +615,11 @@ export const bedRoom = [
               addOnsId: 5,
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-6, -7, 0],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
               price:12700
             },
             {
@@ -612,7 +629,7 @@ export const bedRoom = [
               modelId: 20,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
 
               price:6100
@@ -633,10 +650,11 @@ export const bedRoom = [
               addOnsId: 5,
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-6, -7, 0],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
               price:12700
             },
             {
@@ -646,7 +664,7 @@ export const bedRoom = [
               modelId: 20,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
 
               price:6100
@@ -667,10 +685,11 @@ export const bedRoom = [
               addOnsId: 5,
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-6, -7, 0],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
               price:12700
             },
             {
@@ -680,7 +699,7 @@ export const bedRoom = [
               modelId: 20,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
               
               price:6100
@@ -699,12 +718,15 @@ export const bedRoom = [
               image: 'BedRooms/Two Bedroom/B3/B3 - Primary Closet.jpg',
               modelId: 8,
               addOnsId: 6,
+
               rotation_light: ([-Math.PI / 2, 0, Math.PI /4]),
               scale_light:0.0048,
-              position_light: [-8, -6, 0],  // for TI
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position_light: [-8, -7, -2],  // for TI
+              
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [2, -7, 10], // for SC
+
               price:13400
             },
             {
@@ -714,7 +736,7 @@ export const bedRoom = [
               modelId: 8,
               addOnsId: -1, 
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
 
               price:6300
@@ -726,7 +748,7 @@ export const bedRoom = [
               modelId: 7,
               addOnsId: -1, 
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.0048,
 
               price:6900
@@ -736,51 +758,53 @@ export const bedRoom = [
     ],
     [
       {
-          title: 'C1',
-          image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
-          drawerPrice:4400,
-          lightingPrice: 6200,
-          children: [
-            {
-              id: 'primary',
-              title: 'Primary Bedroom Closet',
-              image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
-              addOnsId: 5, // default 9
-              modelId: 20,
-              rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
-              scale_light:0.0048,
-              position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
-              price:13000
-            },
-            {
-              id: 'second',
-              title: 'Second Bedroom Closet',
-              image: 'BedRooms/Three Bedroom/C1/C1 - Reach In Closet.jpg',
-              addOnsId: -1,
-              modelId: 20,
-              rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              price: 6100,
+        title: 'C1',
+        image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+        drawerPrice:4400,
+        lightingPrice: 6200,
+        children: [
+          {
+            id: 'primary',
+            title: 'Primary Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Primary Closet.jpg',
+            addOnsId: 5, // default 9
+            modelId: 20,
+            rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
+            scale_light:0.0048,
+            position_light: [-8, -7, 0],  // for nomal
 
-              scale:0.0048,
-            },
-            {
-              id: 'third',
-              title: 'Third Bedroom Closet',
-              image: 'BedRooms/Three Bedroom/C1/C1 - Secondary Closet.jpg',
-              addOnsId: 8,
-              modelId: 0,
-              drawerPrice:2500,
-              lightingPrice: 3700,
-              rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              scale:0.0048,
-              position: [-8, -7, 0], // for SC
-              price: 8100
-            },
-          ],
+            rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+            scale:0.12,
+            position: [-2, -7, 10],
+            
+            price:13000
+          },
+          {
+            id: 'second',
+            title: 'Second Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Reach In Closet.jpg',
+            addOnsId: -1,
+            modelId: 20,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            position: [-4, -7, 0],
+            price: 6100,
+
+            scale:0.0048,
+          },
+          {
+            id: 'third',
+            title: 'Third Bedroom Closet',
+            image: 'BedRooms/Three Bedroom/C1/C1 - Secondary Closet.jpg',
+            addOnsId: 8,
+            modelId: 0,
+            drawerPrice:2500,
+            lightingPrice: 3700,
+            rotation: ([-Math.PI / 2, 0, Math.PI /4]),
+            scale:0.0048,
+            position: [-8, -7, 0], // for SC
+            price: 8100
+          },
+        ],
       },
       {
         title: 'C1.1',
@@ -797,9 +821,10 @@ export const bedRoom = [
             rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
             scale_light:0.0048,
             position_light: [-8, -7, 0],  // for nomal
-            rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-            scale:0.14,
-            position: [-8, -7, 8], // for SC
+
+            rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+            scale:0.12,
+            position: [-2, -7, 10],
             price:13000
           },
           {
@@ -809,7 +834,7 @@ export const bedRoom = [
             addOnsId: -1,
             modelId: 20,
             rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-            position: [-8, -7, 0],
+            position: [-4, -7, 0],
             price: 6100,
 
             scale:0.0048,
@@ -844,9 +869,10 @@ export const bedRoom = [
           rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
           scale_light:0.0048,
           position_light: [-8, -7, 0],  // for nomal
-          rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-          scale:0.14,
-          position: [-8, -7, 8], // for SC
+
+          rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+          scale:0.12,
+          position: [-2, -7, 10],
           price:13000
         },
         {
@@ -856,7 +882,7 @@ export const bedRoom = [
           addOnsId: -1,
           modelId: 20,
           rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-          position: [-8, -7, 0],
+          position: [-4, -7, 0],
           price: 6100,
 
           scale:0.0048,
@@ -875,7 +901,7 @@ export const bedRoom = [
           price: 8100
         },
       ],
-  },
+    },
       
       {
           title: 'C2',
@@ -891,9 +917,13 @@ export const bedRoom = [
               addOnsId: 11,
 
               rotation_light: ([-Math.PI, -Math.PI/4, -Math.PI]),
-              scale_light:0.14,
+              scale_light:0.12,
               position_light: [-6, -7, -15],  // for nomal
-              scale:0.004,
+
+              rotation: ([-Math.PI, -Math.PI/4, -Math.PI]),
+              scale:0.12,
+              position_light: [-6, -7, -15],  // for nomal
+
               largeoption: true,
               price: 19800
             },
@@ -905,8 +935,8 @@ export const bedRoom = [
               modelId: 24,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
 
               price: 5900
             },
@@ -917,8 +947,8 @@ export const bedRoom = [
               modelId: 25,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 7000
             },
             {
@@ -928,8 +958,8 @@ export const bedRoom = [
               modelId: 11,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-6, -7, 2],
+              scale:0.005,
               price: 7800
               // price: 5900
             },
@@ -940,8 +970,8 @@ export const bedRoom = [
               modelId: 12,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 5600
               // price: 7000
             },
@@ -971,8 +1001,8 @@ export const bedRoom = [
               modelId: 26,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 7500
             },
             {
@@ -980,10 +1010,16 @@ export const bedRoom = [
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Three Bedroom/C3/C3 - Secondary Walk In Closet.jpg',
               modelId: 26,
-              addOnsId: 20,
-              rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale_light:0.12,
-              position_light: [-6, -7, 8],  // for nomal
+              addOnsId: 16,
+
+              rotation_light: ([-Math.PI, -Math.PI/30, -Math.PI]),
+              scale_light: 0.15,
+              position_light: [2, -10, -8],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI/30, -Math.PI]),
+              scale: 0.15,
+              position: [2, -10, -8],  // for nomal
+
               drawerPrice:0,
               lightingPrice: 800,
               price: 6700
@@ -995,70 +1031,77 @@ export const bedRoom = [
               modelId: 14,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 7900
             },
           ],
       },
       {
         title: 'C0N',
-        image: 'BedRooms/Three Bedroom/CON/CON - Primary Closet.jpg',
+        image: 'BedRooms/Three Bedroom/CON_/CON - Primary Closet.jpg',
         drawerPrice:4000,
         lightingPrice: 5800,
         children: [
           {
             id: 'primary',
             title: 'Primary Bedroom Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Primary Closet.jpg',
+            image: 'BedRooms/Three Bedroom/CON_/CON - Primary Closet.jpg',
             addOnsId: 5,
             modelId: 26,
             rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
             scale_light:0.0048,
             position_light: [-8, -7, 0],  // for nomal
-            rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-            scale:0.14,
-            position: [-8, -7, 8], // for SC
+
+            rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+            scale:0.12,
+            position: [-2, -7, 10],
             price: 12700
           },
         
           {
             id: 'second',
             title: 'Second Bedroom Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 1.jpg',
+            image: 'BedRooms/Three Bedroom/CON_/CON - Reach In 1.jpg',
             modelId: 23,
             addOnsId: -1,
             rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-            position: [-12, -7, 0],
+            position: [-4, -7, 4],
             scale:0.005,
             price: 9800
           },
           {
             id: 'third',
             title: 'Third Bedroom Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Reach In 2.jpg',
+            image: 'BedRooms/Three Bedroom/CON_/CON - Reach In 2.jpg',
             addOnsId: -1,
             modelId: 24,
             rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-            position: [-8, -7, 0],
+            position: [-4, -7, 0],
             scale:0.005,
             price: 6100
           },
           {
             id: 'fourth',
             title: 'Hall Closet',
-            image: 'BedRooms/Three Bedroom/CON/CON - Hall Closet.jpg',
+            image: 'BedRooms/Three Bedroom/CON_/CON - Hall Closet.jpg',
             modelId: 14,
             addOnsId: 22,
-            rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
-            position_light: [-8, -7, 8],
+
+            rotation_light: ([-Math.PI, Math.PI/30, -Math.PI]),
+            position_light: [8, -7, -8],
             scale_light:0.14,
+
+            rotation: ([-Math.PI, Math.PI/30, -Math.PI]),
+            position: [8, -7, -8],
+            scale:0.14,
+
             drawerPrice:0,
             lightingPrice: 1800,
             price: 8400
           },
         ],
-    },
+      },
       {
           title: 'C0S',
           image: 'BedRooms/Three Bedroom/COS/COS - Primary Closet.jpg',
@@ -1074,9 +1117,10 @@ export const bedRoom = [
               rotation_light: ([-Math.PI / 2, 0, Math.PI /10]),
               scale_light:0.0048,
               position_light: [-8, -7, 0],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
-              scale:0.14,
-              position: [-8, -7, 8], // for SC
+
+              rotation: ([-Math.PI, -Math.PI*6/5, -Math.PI]),
+              scale:0.12,
+              position: [-2, -7, 10],
               price: 12700
             },
             {
@@ -1086,7 +1130,7 @@ export const bedRoom = [
               addOnsId: -1,
               modelId: 24,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 0],
               scale:0.005,
               price: 6100
             },
@@ -1097,7 +1141,7 @@ export const bedRoom = [
               modelId: 23,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-12, -7, 0],
+              position: [-4, -7, 4],
               scale:0.005,
               price: 9800
             },
@@ -1121,7 +1165,11 @@ export const bedRoom = [
               rotation_light: ([-Math.PI, -Math.PI/4, -Math.PI]),
               scale_light:0.13,
               position_light: [-3, -7, -15],  // for nomal
-              scale:0.004,
+
+              rotation: ([-Math.PI, -Math.PI/4, -Math.PI]),
+              scale:0.13,
+              position: [-3, -7, -15],  // for nomal
+
               largeoption: true,
               price: 19800
             },
@@ -1132,8 +1180,8 @@ export const bedRoom = [
               modelId: 12,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 6400
             },
             {
@@ -1141,10 +1189,15 @@ export const bedRoom = [
               title: 'Third Bedroom Closet',
               image: 'BedRooms/Five Bedroom/D1/D1 - Secondary Closet.jpg',
               modelId: 27,
-              addOnsId: 21, // default 9
-              rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
+              addOnsId: 15, // default 9
+              rotation_light: ([-Math.PI, -Math.PI*5/4, -Math.PI]),
               scale_light:0.12,
-              position_light: [-15, -7, 4],  // for nomal
+              position_light: [-8, -7, 15],  // for nomal
+              
+              rotation: ([-Math.PI, -Math.PI*5/4, -Math.PI]),
+              scale:0.12,
+              position: [-8, -7, 15],  // for nomal
+              
               drawerPrice:0,
               largeoption: true,
 
@@ -1158,8 +1211,8 @@ export const bedRoom = [
               modelId: 16,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-2, -7, 0],
+              scale:0.005,
               price: 5700
             },
             {
@@ -1169,8 +1222,8 @@ export const bedRoom = [
               modelId: 25,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-2, -7, 0],
+              scale:0.005,
               price: 7000
             },
             {
@@ -1180,8 +1233,8 @@ export const bedRoom = [
               modelId: 28,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-2, -7, 0],
+              scale:0.005,
               price: 5200
             }
           ],
@@ -1213,9 +1266,13 @@ export const bedRoom = [
               
               addOnsId: 16,
 
-              rotation_light: ([-Math.PI, -Math.PI/8, -Math.PI]),
+              rotation_light: ([-Math.PI, -Math.PI/15, -Math.PI]),
               scale_light: 0.15,
               position_light: [0, -8, -8],  // for nomal
+
+              rotation: ([-Math.PI, -Math.PI/15, -Math.PI]),
+              scale: 0.15,
+              position: [0, -8, -8],  // for nomal
               
               drawerPrice:0,
               lightingPrice: 1200,
@@ -1228,7 +1285,7 @@ export const bedRoom = [
               modelId: 27,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 4],
               scale:0.004,
 
               price: 7900
@@ -1240,7 +1297,7 @@ export const bedRoom = [
               modelId: 18,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
+              position: [-4, -7, 4],
               scale:0.004,
               
               price: 11300
@@ -1260,12 +1317,13 @@ export const bedRoom = [
               modelId: 24,
 
               addOnsId: 18, // default 9
-              rotation_light: ([-Math.PI, -Math.PI, -Math.PI]),
+              rotation_light: ([-Math.PI, -Math.PI*5/4, -Math.PI]),
               scale_light:0.14,
-              position_light: [-8, -7, 8],  // for nomal
-              rotation: ([-Math.PI, -Math.PI, -Math.PI]),
+              position_light: [-2, -7, 8],  // for nomal
+              
+             rotation: ([-Math.PI, -Math.PI*5/4, -Math.PI]),
               scale:0.14,
-              position: [-8, -7, 8], // for SC
+              position: [-2, -7, 8],  // for nomal
 
               price: 17400
             },
@@ -1276,8 +1334,8 @@ export const bedRoom = [
               modelId: 24,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
 
               price: 6200
             },
@@ -1307,7 +1365,7 @@ export const bedRoom = [
 
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
               position: [-8, -7, 0],
-              scale:0.004,
+              scale:0.0048,
 
               price: 11000
             },
@@ -1333,8 +1391,8 @@ export const bedRoom = [
               modelId: 24,
               addOnsId: -1,
               rotation: ([-Math.PI / 2, 0, Math.PI /4]),
-              position: [-8, -7, 0],
-              scale:0.004,
+              position: [-4, -7, 0],
+              scale:0.005,
               price: 5700
             },
           ],
