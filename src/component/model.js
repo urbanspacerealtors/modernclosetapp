@@ -29,4 +29,5 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
   );
 };
 
+
 export default ObjModel;
