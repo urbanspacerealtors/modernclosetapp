@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Modern Austin Closets Selections Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is live [here](https://modernaustinclosets.com).
+
+## Helpful Links
+- [React Three Fiber](https://github.com/pmndrs/react-three-fiber)
+- [React Three Drei](https://github.com/pmndrs/drei)
 
 ## Available Scripts
 
