@@ -43,9 +43,7 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
     <group rotation={rotation}>
       {isLoading && (
         <Html>
-          <div className="loading-container">
-            <div className="fade-box"></div>
-          </div>
+          
         </Html>
       )}
       {loadedObject && !isLoading ? <primitive object={loadedObject} /> : null}
