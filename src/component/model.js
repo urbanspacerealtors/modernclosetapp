@@ -6,10 +6,16 @@ import { Html } from '@react-three/drei';
 const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
   const [loadedObject, setLoadedObject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showHtml, setShowHtml] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-  
+    setShowHtml(false); // Reset to false initially
+
+    setTimeout(() => {
+      setShowHtml(true); // Show HTML content after 1 second
+    }, 500);
+
     const loadMTL = new Promise((resolve, reject) => {
       const mtlLoader = new MTLLoader();
       mtlLoader.load(mtlPath, resolve, undefined, reject);
@@ -35,7 +41,7 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
         // Introduce a 30-second delay before setting isLoading to false
         setTimeout(() => {
           setIsLoading(false);
-        },  );
+        }, );
       })
       .catch(error => {
         console.error('An error occurred:', error);
@@ -45,10 +51,9 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
   
   return (
     <group rotation={rotation}>
-      {isLoading && (
+      {isLoading  && showHtml && (
         <Html center>
-           <div className="loading-icon"></div>
-
+           <div id="progressbar"></div>
         </Html>
       )}
       {loadedObject && !isLoading ? <primitive object={loadedObject} /> : null}
