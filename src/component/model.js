@@ -14,7 +14,7 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
 
     setTimeout(() => {
       setShowHtml(true); // Show HTML content after 1 second
-    }, 500);
+    }, 100);
 
     const loadMTL = new Promise((resolve, reject) => {
       const mtlLoader = new MTLLoader();
