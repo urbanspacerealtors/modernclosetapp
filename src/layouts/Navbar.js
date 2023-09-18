@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 
-import LogoImage from '../../src/assets/images/background/The Modern Austin Residences logo white.svg';
+import LogoImage from '../../src/assets/images/background/modern-logo.png';
 import { useState } from "react";
 import { CCollapse, CContainer, CDropdown, CDropdownDivider, CDropdownItem, CDropdownMenu, CDropdownToggle, CNavItem, CNavLink, CNavbar, CNavbarBrand, CNavbarNav, CNavbarToggler } from "@coreui/react";
 
@@ -17,9 +17,9 @@ const NavbarPage = (props) => {
                <img
                 className="w-100"
                 src={LogoImage}
-                alt="logo"
+                alt="Austin Modern Residences"
                 style={{
-                  width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%',
+                  width: 'auto', height: 'auto', maxWidth: '320px', maxHeight: '100%'
                 }}
               />
 
