@@ -9,12 +9,12 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
 
   useEffect(() => {
     setIsLoading(true);
-
+  
     const loadMTL = new Promise((resolve, reject) => {
       const mtlLoader = new MTLLoader();
       mtlLoader.load(mtlPath, resolve, undefined, reject);
     });
-
+  
     loadMTL
       .then(materials => {
         materials.preload();
@@ -31,19 +31,24 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
           }
         });
         setLoadedObject(object);
-        setIsLoading(false);
+  
+        // Introduce a 30-second delay before setting isLoading to false
+        setTimeout(() => {
+          setIsLoading(false);
+        },  );
       })
       .catch(error => {
         console.error('An error occurred:', error);
         setIsLoading(false);
       });
   }, [mtlPath, objPath, largeOption]);
-
+  
   return (
     <group rotation={rotation}>
       {isLoading && (
-        <Html>
-          
+        <Html center>
+           <div className="loading-icon"></div>
+
         </Html>
       )}
       {loadedObject && !isLoading ? <primitive object={loadedObject} /> : null}

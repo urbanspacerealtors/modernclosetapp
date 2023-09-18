@@ -396,7 +396,7 @@ const MainViewer = () => {
           <div>
             <div 
               className="w-100" 
-              style={{ height: '50vh',  overflow: "scroll" , cursor: 'pointer' }}
+              style={{ height: '50vh',  overflow: "visible" , cursor: 'pointer' }}
             >
               <Canvas className="canvas-pan" style={{ backgroundColor: '#EEEEEE'}} >
 
@@ -404,7 +404,7 @@ const MainViewer = () => {
 
                 <ambientLight />
 
-                {addOnsId < 0 && <pointLight intensity='500' position={[5, -8, 5]} />}
+                {addOnsId < 0 && <pointLight intensity='500' position={[5, -20, 5]} />}
 
                 {addOnsId >= 0 && (
                   <>
@@ -424,7 +424,7 @@ const MainViewer = () => {
                   rotateSpeed={0.33}
                   scale={objScale}
                 />
-                <mesh  rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={objScale} position={objPositon} castShadow>
+                <mesh rotateOnWorldAxis={new THREE.Vector3(0, 0, 0)} scale={objScale} position={objPositon} castShadow>
                   {addOnsId < 0 ? (
                     finishOption ? (
                       <ObjModel
