@@ -82,7 +82,7 @@ export const modelSCFiles = [
     { objPath: 'Drawers/C1-D3-PC-Drawers/C1-D3-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C1-D3-PC-Drawers/C1-D3-PC-Drawers-SC.mtl' },
 
     { objPath: 'Drawers/C2 + D1 PC w drawers/SC/M002300004000.OBJ', mtlPath: 'Drawers/C2 + D1 PC w drawers/SC/M002300004000.mtl' },
-    { objPath: 'Drawers/C2-D1-PC-Drawers/C2-D1-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C2-D1-PC-Drawers/C2-D1-PC-Drawers-SC.mtl' },
+    { objPath: 'Drawers/C2-D1-PC-Drawers/New/C2-D1-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C2-D1-PC-Drawers/New/C2-D1-PC-Drawers-SC.mtl' },
 
     { objPath: 'Lighting/C3 + D2 PC/SC/M002300008600.OBJ', mtlPath: 'Lighting/C3 + D2 PC/SC/M002300008600.mtl' },
 
@@ -153,7 +153,7 @@ export const modelSCFiles = [
     { objPath: 'Drawers/C1-D3-PC-Drawers/C1-D3-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C1-D3-PC-Drawers/C1-D3-PC-Drawers-SC.mtl' },
     
     { objPath: 'Drawers/C2 + D1 PC w drawers/SC/M002300004000.OBJ', mtlPath: 'Drawers/C2 + D1 PC w drawers/SC/M002300004000.mtl' },
-    { objPath: 'Drawers/C2-D1-PC-Drawers/C2-D1-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C2-D1-PC-Drawers/C2-D1-PC-Drawers-SC.mtl' },
+    { objPath: 'Drawers/C2-D1-PC-Drawers/New/C2-D1-PC-Drawers-SC.OBJ', mtlPath: 'Drawers/C2-D1-PC-Drawers/New/C2-D1-PC-Drawers-SC.mtl' },
 
     { objPath: 'Lighting/C3 + D2 PC/SC/M002300008600.OBJ', mtlPath: 'Lighting/C3 + D2 PC/SC/M002300008600.mtl' },
 
