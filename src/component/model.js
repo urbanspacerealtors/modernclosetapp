@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { Html } from '@react-three/drei';
 
 const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
   const [loadedObject, setLoadedObject] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+
     const loadMTL = new Promise((resolve, reject) => {
       const mtlLoader = new MTLLoader();
       mtlLoader.load(mtlPath, resolve, undefined, reject);
@@ -27,15 +31,22 @@ const ObjModel = ({ objPath, mtlPath, rotation, largeOption }) => {
           }
         });
         setLoadedObject(object);
+        setIsLoading(false);
       })
       .catch(error => {
         console.error('An error occurred:', error);
+        setIsLoading(false);
       });
   }, [mtlPath, objPath, largeOption]);
 
   return (
     <group rotation={rotation}>
-      {loadedObject ? <primitive object={loadedObject} /> : null}
+      {isLoading && (
+        <Html center>
+          
+        </Html>
+      )}
+      {loadedObject && !isLoading ? <primitive object={loadedObject} /> : null}
     </group>
   );
 };
