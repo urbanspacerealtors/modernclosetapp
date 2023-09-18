@@ -54,7 +54,7 @@ const SelBedroomPage = () => {
               <div className={field === '4' ? 'col-lg-4 col-md-6 col-12 mt-1 py-2' : 'col-xl-3 col-lg-4 col-md-6 col-12 mt-1 py-2'} key={index + 1}>
                <div className="sentient-buy-pan p-1 d-flex justify-content-center flex-column">
                   <div className="m-0 p-0 pt-2" >
-                    <Link to={`/main?type=${field}&bedroom=${index}`} className="navbar-brand m-0 p-0" onClick={() => window.scrollTo(0, 0)}>
+                    <Link to={`/main?type=${field}&bedroom=${index}`} className="m-0 p-0" onClick={() => window.scrollTo(0, 0)}>
                       <img
                         className="product-height w-100"
                         src={ item?.image}
