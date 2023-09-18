@@ -2,6 +2,12 @@
 	max-width: 1960px;
 }
 
+.navbar img {
+	shape-rendering: crispEdges;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translateZ(0) scale(1.0, 1.0);
+}
+
 .main-navbar-button{
 	padding: 16px 24px;
 	height: 59px;
