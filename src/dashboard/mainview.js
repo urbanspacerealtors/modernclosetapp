@@ -72,6 +72,8 @@ const MainViewer = () => {
   const [basePrice, setBasePrice] = useState(5000);
 
   const [zoomState, setZoomState] = useState(50);
+  const [isLoading, setIsLoading] = useState(true);
+
   //----------------------------------------- 
 
   useEffect(() => {    
@@ -155,7 +157,7 @@ const MainViewer = () => {
       setBasePrice(bedRoom[field && field > 0 ? field-1 : 0][bedRoomNumber].children[0].price );      
     }   
   },[bedRoomInfo?.title]);
-
+  
   const handleBedroom = (id, item) => {
     setBedroomCloset(id);
 
