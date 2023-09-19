@@ -129,7 +129,7 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D2-SC/D2-SC-TI.OBJ', mtlPath: 'Lighting/D2-SC/D2-SC-TI.mtl'},
     { objPath: 'Lighting/D3 Hall SC/TI/M002300002000.OBJ', mtlPath: 'Lighting/D3 Hall SC/TI/M002300002000.mtl' },
 
-    { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.mtl' },
+    { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-TI.mtl' },   
     { objPath: 'Drawers/D3 Hall/TI/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002300.mtl' },
     { objPath: 'basicObject/C3-SC-TI.OBJ', mtlPath: 'basicObject/C3-SC-TI.mtl' },
     { objPath: 'Drawers/D1-BC3/D1-BC3-TI.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-TI.mtl' },
@@ -200,7 +200,7 @@ export const modelSCFiles = [
     { objPath: 'Lighting/D2-SC/D2-SC-TI.OBJ', mtlPath: 'Lighting/D2-SC/D2-SC-TI.mtl'},    
     { objPath: 'Drawers/D3 Hall/TI/M002300002000.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002000.mtl' },
 
-    { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-COS-D3-PC-Drawers-TI.mtl' },   
+    { objPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-TI.OBJ', mtlPath: 'Drawers/B2-COS-D3-PC-Drawers/B2-CON-COS-D3-PC-TI.mtl' },   
     { objPath: 'Drawers/D3 Hall/TI/M002300002300.OBJ', mtlPath: 'Drawers/D3 Hall/TI/M002300002300.mtl' },
     { objPath: 'basicObject/C3-SC-TI.OBJ', mtlPath: 'basicObject/C3-SC-TI.mtl' },
     { objPath: 'Drawers/D1-BC3/D1-BC3-TI.OBJ', mtlPath: 'Drawers/D1-BC3/D1-BC3-TI.mtl' },
