@@ -19,7 +19,7 @@ const NavbarPage = (props) => {
                 src={LogoImage}
                 alt="Austin Modern Residences"
                 style={{
-                  width: 'auto', height: 'auto', maxWidth: '320px', maxHeight: '100%'
+                  width: 'auto', height: 'auto', maxWidth: '320px', maxHeight: '123px'
                 }}
               />
 
