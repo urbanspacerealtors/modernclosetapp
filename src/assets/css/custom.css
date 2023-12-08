@@ -1,3 +1,6 @@
+body {
+    overscroll-behavior-y: none;
+}
 .canvas-pan > div:nth-child(2) {
 	transform: none !important;
 	left: 50% !important;
