@@ -35,8 +35,8 @@
     "three": "^0.155.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -46,6 +46,9 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "devDependencies": {
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",

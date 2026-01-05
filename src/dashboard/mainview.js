@@ -548,25 +548,22 @@ const MainViewer = () => {
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>{bedroomClosetName} [<b>{floorPlan}</b>]</h2>
               <hr className="sentient-underline" />
               <div className="row col-12">
+                {/* Pricing display disabled per request. */}
+                {/*
                 <div className="col-md-7 col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>{`Price: $${price?.toLocaleString()}`}</h3>
-                  {lightOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Lighting + Drawers add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
-                  )}
-                  {lightOption && drawPrice === 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Lighting add-on: $${(lightPrice)?.toLocaleString()}`}</h3>
-                    )}
-                  {!lightOption && drawersOption && drawPrice > 0 && (
-                    <h3 className="sentient-contenttitle">{`+ Drawers add-on: $${drawPrice?.toLocaleString()}`}</h3>
-                  )}
                 </div>
-                <div className="col-md-5 col-12">
+                */}
+                <div className="col-12">
                   <h3 className="sentient-contenttitle" style={{ fontWeight: '700' }}>Finish: {finishOption === true ? 'Silver Cembran' : 'Tatami Ivory'}</h3>
                 </div>
               </div>
               <hr className="sentient-underline" />
+              {/* Pricing totals disabled per request. */}
+              {/*
               <h2 className="sentient-subtitle" style={{ fontWeight: '700' }}>Total Price: ${totalValue?.toLocaleString()}</h2>
               <p className="sentient-content"> Price includes tax, shipping from Italy, delivery, and installation.</p>
+              */}
 
               <h3 className="sentient-contenttitle pt-3"> <b>Important:</b> Closet selections must be selected & purchased on <a style={{ color: '#294734', fontWeight: '700' }} href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index">Formsite</a>.</h3>            </div>
           </div>
@@ -642,7 +639,8 @@ const MainViewer = () => {
                       alt="" />
                     <span className="sentient-contenttitle">&nbsp; Drawers </span>
                   </div>
-                  <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>&nbsp; {`additional cost: $${drawPrice?.toLocaleString()}`}</span>            
+                  {/* Additional cost pricing disabled per request. */}
+                  {/* <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>&nbsp; {`additional cost: $${drawPrice?.toLocaleString()}`}</span> */}            
                 </>
               )}
 
@@ -653,9 +651,12 @@ const MainViewer = () => {
                   alt="" />
                 <span className={`sentient-contenttitle`}> &nbsp; {drawPrice > 0 ? 'Lighting + Drawers' : 'Lighting'} </span>
               </div>
+              {/* Additional cost pricing disabled per request. */}
+              {/*
               <span className="sentient-contenttitle" style={{ paddingLeft: '25px'}}>
                 &nbsp; {`additional cost: $${(lightPrice)?.toLocaleString()}`}
-              </span>              
+              </span>
+              */}              
             </div>
           )} 
           <div>
