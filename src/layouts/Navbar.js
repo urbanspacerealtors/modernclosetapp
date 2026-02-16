@@ -28,13 +28,13 @@ const NavbarPage = (props) => {
             </div>
           </CNavbarBrand>
           <div className="d-md-flex d-none ml-auto">
-              <a href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
-                <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> ALREADY DECIDED? <br /> CLICK HERE TO PURCHASE </h2>
+              <a href="https://modernaustinresidences.com" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
+                <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> EXPLORE THE <br /> MODERN RESIDENCES </h2>
               </a>
             </div>
             <div className="d-md-none d-flex">
-              <a href="https://fs18.formsite.com/UrbanspaceLifestyle/The-Modern-Closets/index" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
-                <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> PURCHASE </h2>
+              <a href="https://modernaustinresidences.com" target="_blank" className="navbar-brand d-flex align-items-center" onClick={() => window.scrollTo(0, 0)}>
+                <h2 className="sentient-subtitle d-flex align-items-center" style={{ border: '1px solid #fafbfd', borderRadius: '16px', margin: '5px', padding: '10px', color: '#fafbfd' }}> EXPLORE THE <br /> MODERN RESIDENCES </h2>
               </a>
             </div>
             </CContainer>
